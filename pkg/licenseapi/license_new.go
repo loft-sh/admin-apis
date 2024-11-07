@@ -150,6 +150,11 @@ func New(product ProductName) *License {
 						Name:        string(VirtualClusterProDistroDatabaseConnector),
 						Status:      virtualClusterStatus,
 					},
+					{
+						DisplayName: "SleepMode",
+						Name:        string(VirtualClusterProDistroSleepMode),
+						Status:      virtualClusterStatus,
+					},
 				},
 			},
 			{
@@ -326,6 +331,10 @@ func New(product ProductName) *License {
 						Status:      allowedStatus,
 					},
 				},
+			},
+			{
+				DisplayName: "vCluster Sleep Mode",
+				Name:        string(VirtualClusterSleepMode),
 			},
 		},
 	}
