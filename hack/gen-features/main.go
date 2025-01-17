@@ -12,10 +12,9 @@ import (
 )
 
 const (
-	fileTemplate = `package licenseapi
-// This code was generated. Change features.yaml to add, remove, or edit features.
+	featuresFileTemplate = `package licenseapi
 
-//go:generate go run ../../hack/gen-features/main.go
+// This code was generated. Change features.yaml to add, remove, or edit features.
 
 // Features
 const (
@@ -25,6 +24,40 @@ const (
 func GetFeatures() []FeatureName {
 	return []FeatureName{
 %s
+	}
+}
+`
+	defaultLicenseFileTemplate = `package licenseapi
+
+// This code was generated. Change features.yaml to add, remove, or edit features.
+
+import (
+	"cmp"
+	"slices"
+)
+
+func New() *License {
+	limits := make([]*Limit, 0, len(Limits))
+	for _, limit := range Limits {
+		limits = append(limits, limit)
+	}
+	slices.SortFunc(limits, func(a, b *Limit) int {
+		return cmp.Compare(a.Name, b.Name)
+	})
+
+	// Sorting features by module is not requires here. However, to maintain backwards compatibility, the structure of
+	// features being contained within a module is still necessary. Therefore, all features are now returned in one module.
+	return &License{
+		Modules: []*Module{
+			{
+				DisplayName: "All Features",
+				Name:        string(VirtualClusterModule),
+				Limits:      limits,
+				Features: []*Feature{
+%s
+				},
+			},
+		},
 	}
 }
 `
@@ -63,10 +96,7 @@ func main() {
 		panic(err)
 	}
 
-	features := struct {
-		Features []licenseapi.Feature `json:"features"`
-	}{}
-	err = yaml.Unmarshal(bytes, &features)
+	features, err := featuresUnmarshal(bytes)
 	if err != nil {
 		panic(err)
 	}
@@ -76,13 +106,23 @@ func main() {
 		panic(err)
 	}
 
-	_, err = f.WriteString(fmt.Sprintf(fileTemplate, generateFeatureConstantsBody(features.Features), generateFeatureSliceBody(features.Features)))
+	_, err = f.WriteString(fmt.Sprintf(featuresFileTemplate, generateFeatureConstantsBody(features), generateFeatureSliceBody(features)))
+	if err != nil {
+		panic(err)
+	}
+
+	f, err = os.Create("../../pkg/licenseapi/license_new.go")
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = f.WriteString(fmt.Sprintf(defaultLicenseFileTemplate, generatedDefaultLicenseBody(features)))
 	if err != nil {
 		panic(err)
 	}
 }
 
-func generateFeatureConstantsBody(features []licenseapi.Feature) string {
+func generateFeatureConstantsBody(features []*licenseapi.Feature) string {
 	featureConstants := ""
 	for _, feature := range features {
 		featureConstants += fmt.Sprintf(`	%s FeatureName = "%s" // %s
@@ -92,7 +132,7 @@ func generateFeatureConstantsBody(features []licenseapi.Feature) string {
 	return strings.TrimSuffix(featureConstants, "\n")
 }
 
-func generateFeatureSliceBody(features []licenseapi.Feature) string {
+func generateFeatureSliceBody(features []*licenseapi.Feature) string {
 	featuresList := ""
 	for _, feature := range features {
 		featuresList += fmt.Sprintf(`		%s,
@@ -119,8 +159,31 @@ func replaceAliasWithFull(feature string) string {
 	return feature
 }
 
+func generatedDefaultLicenseBody(features []*licenseapi.Feature) string {
+	moduleFeatures := ""
+	for _, feature := range features {
+		moduleFeatures += fmt.Sprintf(`					{
+						DisplayName: "%s",
+						Name:        "%s",
+					},
+`, feature.DisplayName, feature.Name)
+	}
+	return strings.TrimSuffix(moduleFeatures, "\n")
+}
+
 func hyphenatedToCamelCase(name string) string {
 	return reg.ReplaceAllStringFunc(name, func(s string) string {
 		return strings.ToUpper(string(strings.TrimPrefix(s, "-")[0])) + strings.TrimPrefix(s, "-")[1:]
 	})
+}
+
+func featuresUnmarshal(body []byte) ([]*licenseapi.Feature, error) {
+	features := struct {
+		Features []*licenseapi.Feature `json:"features"`
+	}{}
+	err := yaml.Unmarshal(body, &features)
+	if err != nil {
+		return nil, err
+	}
+	return features.Features, nil
 }

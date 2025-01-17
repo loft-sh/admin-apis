@@ -1,7 +1,6 @@
 package licenseapi
-// This code was generated. Change features.yaml to add, remove, or edit features.
 
-//go:generate go run ../../hack/gen-features/main.go
+// This code was generated. Change features.yaml to add, remove, or edit features.
 
 // Features
 const (
