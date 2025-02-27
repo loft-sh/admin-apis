@@ -15,9 +15,7 @@ import (
 )
 
 const (
-	metadataQueryFmt             = "metadata['%s']:'%s'"
-	metadataKeyAttachAll         = "attach_all_features"
-	metadataKeyProductForFeature = "product_for_feature"
+	metadataQueryFmt = "metadata['%s']:'%s'"
 )
 
 type syncedFeature struct {
@@ -127,7 +125,7 @@ func ensureFeatureProducts(syncedFeatures map[string]syncedFeature) error {
 func ensureFeatureProduct(syncedFeature syncedFeature) error {
 	productSearch := stripeproducts.Search(&stripe.ProductSearchParams{
 		SearchParams: stripe.SearchParams{
-			Query: fmt.Sprintf(metadataQueryFmt, metadataKeyProductForFeature, syncedFeature.name),
+			Query: fmt.Sprintf(metadataQueryFmt, licenseapi.MetadataKeyProductForFeature, syncedFeature.name),
 		},
 	})
 	if err := productSearch.Err(); err != nil {
@@ -153,7 +151,7 @@ func ensureFeatureProduct(syncedFeature syncedFeature) error {
 			},
 		},
 		Metadata: map[string]string{
-			metadataKeyProductForFeature: syncedFeature.name,
+			licenseapi.MetadataKeyProductForFeature: syncedFeature.name,
 		},
 	})
 	if err != nil {
@@ -173,7 +171,7 @@ func ensureFeatureProduct(syncedFeature syncedFeature) error {
 func ensureAttachAll(featureIDs map[string]syncedFeature) error {
 	productSearch := stripeproducts.Search(&stripe.ProductSearchParams{
 		SearchParams: stripe.SearchParams{
-			Query: fmt.Sprintf(metadataQueryFmt, metadataKeyAttachAll, "true"),
+			Query: fmt.Sprintf(metadataQueryFmt, licenseapi.MetadataKeyAttachAll, "true"),
 		},
 	})
 	if err := productSearch.Err(); err != nil {
