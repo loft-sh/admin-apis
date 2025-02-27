@@ -12,6 +12,12 @@ type FeatureStatus string
 type FeatureName string
 type ButtonName string
 
+// Metadata Keys
+const (
+	MetadataKeyAttachAll         = "attach_all_features"
+	MetadataKeyProductForFeature = "product_for_feature"
+)
+
 // Products
 const (
 	Loft        ProductName = "loft"
