@@ -9,7 +9,7 @@ jobs:
   upload-features:
     runs-on: ubuntu-latest
     env:
-      STRIPE_API_TOKEN: ${{ secrets.STRIPE_API_TOKEN }}
+      STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
     steps:
       - uses: actions/checkout@v4
 

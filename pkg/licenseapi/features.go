@@ -62,7 +62,7 @@ const (
 
 	AutoIngressAuth FeatureName = "auto-ingress-authentication" // Automatic Auth For Ingresses
 
-	OIDCProvider FeatureName = "oidc-provider" // Loft as OIDC Provider
+	OIDCProvider FeatureName = "oidc-provider" // Platform as OIDC Provider
 
 	MultipleSSOProviders FeatureName = "multiple-sso-providers" // Multiple SSO Providers
 

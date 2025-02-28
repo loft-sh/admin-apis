@@ -14,12 +14,16 @@ type ButtonName string
 
 // Metadata Keys
 const (
+	/* NEVER CHANGE ANY OF THESE */
 	MetadataKeyAttachAll         = "attach_all_features"
 	MetadataKeyProductForFeature = "product_for_feature"
+	MetadataKeyFeatureIsLimit    = "is_limit"
+	MetadataValueTrue            = "true"
 )
 
 // Products
 const (
+	/* NEVER CHANGE ANY OF THESE */
 	Loft        ProductName = "loft"
 	VClusterPro ProductName = "vcluster-pro"
 	DevPodPro   ProductName = "devpod-pro"

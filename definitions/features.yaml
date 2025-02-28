@@ -58,7 +58,7 @@ features: # array of features
 - name: "auto-ingress-authentication"
   displayName: "Automatic Auth For Ingresses"
 - name: "oidc-provider"
-  displayName: "Loft as OIDC Provider"
+  displayName: "Platform as OIDC Provider"
 - name: "multiple-sso-providers"
   displayName: "Multiple SSO Providers"
 - name: "apps"

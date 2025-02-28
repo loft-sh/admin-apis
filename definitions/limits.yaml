@@ -1,0 +1,3 @@
+limits: # array of features
+- name: "virtual-cluster"
+  displayName: "Virtual Cluster" # This name can be changed
