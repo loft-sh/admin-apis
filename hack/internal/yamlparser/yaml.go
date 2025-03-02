@@ -24,5 +24,5 @@ func ParseYAML(yamlPath string, out interface{}) error {
 		return err
 	}
 
-	return yaml.Unmarshal(bytes, &out)
+	return yaml.Unmarshal(bytes, out)
 }

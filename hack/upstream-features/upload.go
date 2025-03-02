@@ -43,7 +43,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = createFeatures(yamlContent.Features, &syncedFeatures, false)
+	err = createFeatures(yamlContent.Features, syncedFeatures, false)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,35 +53,35 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = createFeatures(yamlContent.Limits, &syncedFeatures, true)
+	err = createFeatures(yamlContent.Limits, syncedFeatures, true)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func createFeatures(features []*licenseapi.Feature, syncedFeatures *map[string]syncedFeature, isLimit bool) error {
+func createFeatures(features []*licenseapi.Feature, syncedFeatures map[string]syncedFeature, isLimit bool) error {
 	err := ensureStripeFeatures(features, syncedFeatures, isLimit)
 	if err != nil {
 		return err
 	}
 
-	if err = ensureFeatureProducts(*syncedFeatures); err != nil {
+	if err = ensureFeatureProducts(syncedFeatures); err != nil {
 		return err
 	}
 
-	if err = ensureAttachAll(*syncedFeatures); err != nil {
+	if err = ensureAttachAll(syncedFeatures); err != nil {
 		return err
 	}
 	return nil
 }
 
-func ensureStripeFeatures(features []*licenseapi.Feature, syncedFeatures *map[string]syncedFeature, isLimit bool) error {
+func ensureStripeFeatures(features []*licenseapi.Feature, syncedFeatures map[string]syncedFeature, isLimit bool) error {
 	for _, f := range features {
 		feature, err := ensureFeatureExists(f.Name, f.DisplayName, isLimit)
 		if err != nil {
 			return err
 		}
-		(*syncedFeatures)[feature.stripeID] = feature
+		syncedFeatures[feature.stripeID] = feature
 
 		if !f.Preview {
 			continue
@@ -91,7 +91,7 @@ func ensureStripeFeatures(features []*licenseapi.Feature, syncedFeatures *map[st
 		if err != nil {
 			return err
 		}
-		(*syncedFeatures)[previewFeature.stripeID] = previewFeature
+		syncedFeatures[previewFeature.stripeID] = previewFeature
 	}
 	return nil
 }
