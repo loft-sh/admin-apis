@@ -43,7 +43,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = createFeatures(yamlContent.Features, syncedFeatures, false)
+	err = createFeatures(syncedFeatures, yamlContent.Features, false)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -53,14 +53,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = createFeatures(yamlContent.Limits, syncedFeatures, true)
+	err = createFeatures(syncedFeatures, yamlContent.Limits, true)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func createFeatures(features []*licenseapi.Feature, syncedFeatures map[string]syncedFeature, isLimit bool) error {
-	err := ensureStripeFeatures(features, syncedFeatures, isLimit)
+func createFeatures(syncedFeatures map[string]syncedFeature, features []*licenseapi.Feature, isLimit bool) error {
+	err := ensureStripeFeatures(syncedFeatures, features, isLimit)
 	if err != nil {
 		return err
 	}
@@ -75,48 +75,63 @@ func createFeatures(features []*licenseapi.Feature, syncedFeatures map[string]sy
 	return nil
 }
 
-func ensureStripeFeatures(features []*licenseapi.Feature, syncedFeatures map[string]syncedFeature, isLimit bool) error {
+func ensureStripeFeatures(syncedFeatures map[string]syncedFeature, features []*licenseapi.Feature, isLimit bool) error {
 	for _, f := range features {
-		feature, err := ensureFeatureExists(f.Name, f.DisplayName, isLimit)
+		extraMetadata := map[string]string{}
+		if isLimit {
+			extraMetadata[licenseapi.MetadataKeyFeatureIsLimit] = licenseapi.MetadataValueTrue
+		}
+
+		err := ensureFeatureExists(syncedFeatures, f.Name, f.DisplayName, extraMetadata)
 		if err != nil {
 			return err
 		}
-		syncedFeatures[feature.stripeID] = feature
 
-		if !f.Preview {
-			continue
+		if f.Preview {
+			extraMetadata[licenseapi.MetadataKeyFeatureIsPreview] = licenseapi.MetadataValueTrue
+			err = ensureFeatureExists(syncedFeatures, f.Name+"-preview", f.DisplayName+" [Preview]", extraMetadata)
+			if err != nil {
+				return err
+			}
 		}
 
-		previewFeature, err := ensureFeatureExists(f.Name+"-preview", f.DisplayName+" [Preview]", false)
-		if err != nil {
-			return err
+		if isLimit {
+			extraMetadata[licenseapi.MetadataKeyFeatureLimitType] = licenseapi.MetadataKeyFeatureLimitTypeActive
+			err = ensureFeatureExists(syncedFeatures, f.Name+"-active", f.DisplayName+" [Active]", extraMetadata)
+			if err != nil {
+				return err
+			}
 		}
-		syncedFeatures[previewFeature.stripeID] = previewFeature
 	}
 	return nil
 }
 
-func ensureFeatureExists(name, displayName string, isLimit bool) (syncedFeature, error) {
+func ensureFeatureExists(syncedFeatures map[string]syncedFeature, name, displayName string, extraMetada map[string]string) error {
 	id, exists, err := featureExists(name)
 	if err != nil {
-		return syncedFeature{}, err
+		return err
 	}
 
 	if exists {
-		return syncedFeature{name: name, displayName: displayName, stripeID: id}, nil
+		syncedFeatures[id] = syncedFeature{name: name, displayName: displayName, stripeID: id}
+		return nil
 	}
 
-	feature, err := stripefeatures.New(&stripe.EntitlementsFeatureParams{
+	params := stripe.EntitlementsFeatureParams{
 		Name:      &displayName,
 		LookupKey: &name,
-		Metadata: map[string]string{
-			licenseapi.MetadataKeyFeatureIsLimit: licenseapi.MetadataValueTrue,
-		},
-	})
-	if err != nil {
-		return syncedFeature{}, fmt.Errorf("failed to create Stripe feature from feature %s: %v\n", name, err)
 	}
-	return syncedFeature{name: name, displayName: displayName, stripeID: feature.ID}, nil
+
+	for key, value := range extraMetada {
+		params.AddMetadata(key, value)
+	}
+
+	feature, err := stripefeatures.New(&params)
+	if err != nil {
+		return fmt.Errorf("failed to create Stripe feature from feature %s: %v\n", *params.LookupKey, err)
+	}
+	syncedFeatures[feature.ID] = syncedFeature{name: *params.LookupKey, displayName: *params.Name, stripeID: feature.ID}
+	return nil
 }
 
 func featureExists(id string) (string, bool, error) {
