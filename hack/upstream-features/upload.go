@@ -80,6 +80,7 @@ func ensureStripeFeatures(syncedFeatures map[string]syncedFeature, features []*l
 		extraMetadata := map[string]string{}
 		if isLimit {
 			extraMetadata[licenseapi.MetadataKeyFeatureIsLimit] = licenseapi.MetadataValueTrue
+			f.Name = licenseapi.LimitsPrefix + f.Name
 		}
 
 		err := ensureFeatureExists(syncedFeatures, f.Name, f.DisplayName, extraMetadata)

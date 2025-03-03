@@ -24,6 +24,12 @@ const (
 	MetadataValueTrue                 = "true"
 )
 
+// Other
+const (
+	/* NEVER CHANGE ANY OF THESE */
+	LimitsPrefix = "limits-"
+)
+
 // Products
 const (
 	/* NEVER CHANGE ANY OF THESE */
@@ -68,6 +74,7 @@ const (
 
 // Resources (e.g. for limits)
 const (
+	/* NEVER CHANGE ANY OF THESE */
 	ConnectedClusterLimit        ResourceName = "connected-cluster"
 	VirtualClusterInstanceLimit  ResourceName = "virtual-cluster-instance"
 	SpaceInstanceLimit           ResourceName = "space-instance"

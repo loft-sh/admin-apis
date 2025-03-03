@@ -1,3 +1,15 @@
 limits: # array of features
-- name: "virtual-cluster"
-  displayName: "Virtual Cluster" # This name can be changed
+- name: "platform-instance"
+  displayName: "Platform Instances" # This name can be changed
+- name: "virtual-cluster-instance"
+  displayName: "Virtual Clusters"
+- name: "devpod-workspace-instance"
+  displayName: "DevPod Workspaces"
+- name: "space-instance"
+  displayName: "Namespaces"
+- name: "user"
+  displayName: "Users"
+- name: "connected-cluster"
+  displayName: "Host Clusters"
+- name: "node"
+  displayName: "Nodes"

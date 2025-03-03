@@ -1,8 +1,9 @@
 features: # array of features
-- name: "vclusters"
+- name: "vcluster"
   displayName: "Virtual Cluster Management" # This name can be changed
+  preview: true
 - name: "vcluster-sleep-mode"
-  displayName: "Sleep Mode for Virtual Clusters" # This name can be changed
+  displayName: "Sleep Mode for Virtual Clusters"
 - name: "vcluster-host-path-mapper"
   displayName: "Central HostPath Mapper"
 - name: "vcluster-enterprise-plugins"
@@ -41,8 +42,10 @@ features: # array of features
   displayName: "SleepMode"
 - name: "devpod"
   displayName: "Dev Environment Management"
+  preview: true
 - name: "namespaces"
   displayName: "Namespace Management"
+  preview: true
 - name: "namespace-sleep-mode"
   displayName: "Sleep Mode for Namespaces"
 - name: "connected-clusters"
