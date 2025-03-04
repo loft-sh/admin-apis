@@ -4,7 +4,7 @@ package licenseapi
 
 // Features
 const (
-	VirtualCluster FeatureName = "vclusters" // Virtual Cluster Management
+	VirtualCluster FeatureName = "vcluster" // Virtual Cluster Management
 
 	VirtualClusterSleepMode FeatureName = "vcluster-sleep-mode" // Sleep Mode for Virtual Clusters
 

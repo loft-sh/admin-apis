@@ -27,7 +27,7 @@ func New() *License {
 				Features: []*Feature{
 					{
 						DisplayName: "Virtual Cluster Management",
-						Name:        "vclusters",
+						Name:        "vcluster",
 					},
 					{
 						DisplayName: "Sleep Mode for Virtual Clusters",
