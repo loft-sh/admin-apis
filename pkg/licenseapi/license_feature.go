@@ -19,4 +19,8 @@ type Feature struct {
 	// Status shows the status of the feature (see type FeatureStatus)
 	// +optional
 	Status string `json:"status,omitempty"`
+
+	// Name of the module that this feature belongs to
+	// +optional
+	Module string `json:"module,omitempty"`
 }

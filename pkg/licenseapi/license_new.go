@@ -27,7 +27,7 @@ func New() *License {
 				Features: []*Feature{
 					{
 						DisplayName: "Virtual Cluster Management",
-						Name:        "vclusters",
+						Name:        "vcluster",
 					},
 					{
 						DisplayName: "Sleep Mode for Virtual Clusters",
@@ -142,7 +142,7 @@ func New() *License {
 						Name:        "auto-ingress-authentication",
 					},
 					{
-						DisplayName: "Loft as OIDC Provider",
+						DisplayName: "Platform as OIDC Provider",
 						Name:        "oidc-provider",
 					},
 					{
