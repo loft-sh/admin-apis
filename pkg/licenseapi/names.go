@@ -17,6 +17,7 @@ const (
 	/* NEVER CHANGE ANY OF THESE */
 	MetadataKeyAttachAll              = "attach_all_features"
 	MetadataKeyProductForFeature      = "product_for_feature"
+	MetadataKeyFeatureIsHidden        = "is_hidden"
 	MetadataKeyFeatureIsPreview       = "is_preview"
 	MetadataKeyFeatureIsLimit         = "is_limit"
 	MetadataKeyFeatureLimitType       = "limit_type"

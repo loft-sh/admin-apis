@@ -83,6 +83,10 @@ func ensureStripeFeatures(syncedFeatures map[string]syncedFeature, features []*l
 			f.Name = licenseapi.LimitsPrefix + f.Name
 		}
 
+		if f.Status == string(licenseapi.FeatureStatusHidden) {
+			extraMetadata[licenseapi.MetadataKeyFeatureIsHidden] = licenseapi.MetadataValueTrue
+		}
+
 		err := ensureFeatureExists(syncedFeatures, f.Name, f.DisplayName, extraMetadata)
 		if err != nil {
 			return err
