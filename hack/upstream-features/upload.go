@@ -7,15 +7,16 @@ import (
 	"github.com/loft-sh/admin-apis/hack/internal/yamlparser"
 	"github.com/loft-sh/admin-apis/pkg/licenseapi"
 	"github.com/loft-sh/admin-apis/pkg/util/features"
-	"github.com/stripe/stripe-go/v81"
+	"github.com/stripe/stripe-go/v81/client"
 )
 
 func main() {
-	stripeToken := os.Getenv("STRIPE_API_KEY")
-	if stripeToken == "" {
+	stripeKey := os.Getenv("STRIPE_API_KEY")
+	if stripeKey == "" {
 		log.Fatal("stripe token cannot be empty")
 	}
-	stripe.Key = stripeToken
+	stripeClient := &client.API{}
+	stripeClient.Init(stripeKey, nil)
 
 	syncedFeatures := map[string]features.SyncedFeature{}
 
@@ -29,7 +30,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = features.EnsureFeatures(syncedFeatures, yamlContent.Features, false)
+	err = features.EnsureFeatures(stripeClient, syncedFeatures, yamlContent.Features, false)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -39,7 +40,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = features.EnsureFeatures(syncedFeatures, yamlContent.Limits, true)
+	err = features.EnsureFeatures(stripeClient, syncedFeatures, yamlContent.Limits, true)
 	if err != nil {
 		log.Fatal(err)
 	}

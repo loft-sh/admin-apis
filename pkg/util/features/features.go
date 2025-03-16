@@ -6,9 +6,7 @@ import (
 
 	"github.com/loft-sh/admin-apis/pkg/licenseapi"
 	"github.com/stripe/stripe-go/v81"
-	stripefeatures "github.com/stripe/stripe-go/v81/entitlements/feature"
-	stripeproducts "github.com/stripe/stripe-go/v81/product"
-	"github.com/stripe/stripe-go/v81/productfeature"
+	stripeclient "github.com/stripe/stripe-go/v81/client"
 )
 
 const (
@@ -21,23 +19,25 @@ type SyncedFeature struct {
 	stripeID    string
 }
 
-func EnsureFeatures(syncedFeatures map[string]SyncedFeature, features []*licenseapi.Feature, isLimit bool) error {
-	err := EnsureStripeFeatures(syncedFeatures, features, isLimit)
+func EnsureFeatures(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature, features []*licenseapi.Feature, isLimit bool) error {
+	err := EnsureStripeFeatures(stripeClient, syncedFeatures, features, isLimit)
 	if err != nil {
 		return err
 	}
 
-	if err = EnsureFeatureProducts(syncedFeatures); err != nil {
+	if err = EnsureFeatureProducts(stripeClient, syncedFeatures); err != nil {
 		return err
 	}
 
-	if err = EnsureAttachAll(syncedFeatures); err != nil {
-		return err
+	if !isLimit {
+		if err = EnsureAttachAll(stripeClient, syncedFeatures); err != nil {
+			return err
+		}
 	}
 	return nil
 }
 
-func EnsureStripeFeatures(syncedFeatures map[string]SyncedFeature, features []*licenseapi.Feature, isLimit bool) error {
+func EnsureStripeFeatures(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature, features []*licenseapi.Feature, isLimit bool) error {
 	for _, f := range features {
 		extraMetadata := map[string]string{}
 		if isLimit {
@@ -49,14 +49,14 @@ func EnsureStripeFeatures(syncedFeatures map[string]SyncedFeature, features []*l
 			extraMetadata[licenseapi.MetadataKeyFeatureIsHidden] = licenseapi.MetadataValueTrue
 		}
 
-		err := EnsureFeatureExists(syncedFeatures, f.Name, f.DisplayName, extraMetadata)
+		err := EnsureFeatureExists(stripeClient, syncedFeatures, f.Name, f.DisplayName, extraMetadata)
 		if err != nil {
 			return err
 		}
 
 		if f.Preview {
 			extraMetadata[licenseapi.MetadataKeyFeatureIsPreview] = licenseapi.MetadataValueTrue
-			err = EnsureFeatureExists(syncedFeatures, f.Name+"-preview", f.DisplayName+" [Preview]", extraMetadata)
+			err = EnsureFeatureExists(stripeClient, syncedFeatures, f.Name+"-preview", f.DisplayName+" [Preview]", extraMetadata)
 			if err != nil {
 				return err
 			}
@@ -64,7 +64,7 @@ func EnsureStripeFeatures(syncedFeatures map[string]SyncedFeature, features []*l
 
 		if isLimit {
 			extraMetadata[licenseapi.MetadataKeyFeatureLimitType] = licenseapi.MetadataKeyFeatureLimitTypeActive
-			err = EnsureFeatureExists(syncedFeatures, f.Name+"-active", f.DisplayName+" [Active]", extraMetadata)
+			err = EnsureFeatureExists(stripeClient, syncedFeatures, f.Name+"-active", f.DisplayName+" [Active]", extraMetadata)
 			if err != nil {
 				return err
 			}
@@ -73,8 +73,8 @@ func EnsureStripeFeatures(syncedFeatures map[string]SyncedFeature, features []*l
 	return nil
 }
 
-func EnsureFeatureExists(syncedFeatures map[string]SyncedFeature, name, displayName string, extraMetada map[string]string) error {
-	id, exists, err := FeatureExists(name)
+func EnsureFeatureExists(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature, name, displayName string, extraMetada map[string]string) error {
+	id, exists, err := FeatureExists(stripeClient, name)
 	if err != nil {
 		return err
 	}
@@ -93,7 +93,7 @@ func EnsureFeatureExists(syncedFeatures map[string]SyncedFeature, name, displayN
 		params.AddMetadata(key, value)
 	}
 
-	feature, err := stripefeatures.New(&params)
+	feature, err := stripeClient.EntitlementsFeatures.New(&params)
 	if err != nil {
 		return fmt.Errorf("failed to create Stripe feature from feature %s: %v\n", *params.LookupKey, err)
 	}
@@ -101,8 +101,8 @@ func EnsureFeatureExists(syncedFeatures map[string]SyncedFeature, name, displayN
 	return nil
 }
 
-func FeatureExists(id string) (string, bool, error) {
-	list := stripefeatures.List(&stripe.EntitlementsFeatureListParams{
+func FeatureExists(stripeClient *stripeclient.API, id string) (string, bool, error) {
+	list := stripeClient.EntitlementsFeatures.List(&stripe.EntitlementsFeatureListParams{
 		LookupKey: &id,
 	})
 	if err := list.Err(); err != nil {
@@ -118,17 +118,17 @@ func FeatureExists(id string) (string, bool, error) {
 	return feature.ID, true, nil
 }
 
-func EnsureFeatureProducts(syncedFeatures map[string]SyncedFeature) error {
+func EnsureFeatureProducts(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature) error {
 	for _, feature := range syncedFeatures {
-		if err := EnsureFeatureProduct(feature); err != nil {
+		if err := EnsureFeatureProduct(stripeClient, feature); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 
-func EnsureFeatureProduct(syncedFeature SyncedFeature) error {
-	productSearch := stripeproducts.Search(&stripe.ProductSearchParams{
+func EnsureFeatureProduct(stripeClient *stripeclient.API, syncedFeature SyncedFeature) error {
+	productSearch := stripeClient.Products.Search(&stripe.ProductSearchParams{
 		SearchParams: stripe.SearchParams{
 			Query: fmt.Sprintf(metadataQueryFmt, licenseapi.MetadataKeyProductForFeature, syncedFeature.name),
 		},
@@ -145,7 +145,7 @@ func EnsureFeatureProduct(syncedFeature SyncedFeature) error {
 	unit := int64(2000000) // sample placeholder price
 	interval := "year"
 	intervalCount := int64(1)
-	product, err := stripeproducts.New(&stripe.ProductParams{
+	product, err := stripeClient.Products.New(&stripe.ProductParams{
 		Name: &syncedFeature.displayName,
 		DefaultPriceData: &stripe.ProductDefaultPriceDataParams{
 			Currency:   &usdCurrencyCode,
@@ -163,7 +163,7 @@ func EnsureFeatureProduct(syncedFeature SyncedFeature) error {
 		return err
 	}
 
-	_, err = productfeature.New(&stripe.ProductFeatureParams{
+	_, err = stripeClient.ProductFeatures.New(&stripe.ProductFeatureParams{
 		Product:            &product.ID,
 		EntitlementFeature: &syncedFeature.stripeID,
 	})
@@ -173,8 +173,8 @@ func EnsureFeatureProduct(syncedFeature SyncedFeature) error {
 	return nil
 }
 
-func EnsureAttachAll(featureIDs map[string]SyncedFeature) error {
-	productSearch := stripeproducts.Search(&stripe.ProductSearchParams{
+func EnsureAttachAll(stripeClient *stripeclient.API, featureIDs map[string]SyncedFeature) error {
+	productSearch := stripeClient.Products.Search(&stripe.ProductSearchParams{
 		SearchParams: stripe.SearchParams{
 			Query: fmt.Sprintf(metadataQueryFmt, licenseapi.MetadataKeyAttachAll, licenseapi.MetadataValueTrue),
 		},
@@ -186,11 +186,11 @@ func EnsureAttachAll(featureIDs map[string]SyncedFeature) error {
 		prod := productSearch.Product()
 		featuresToCheck := maps.Clone(featureIDs)
 
-		if err := SearchProductForFeatures(prod.ID, featuresToCheck); err != nil {
+		if err := SearchProductForFeatures(stripeClient, prod.ID, featuresToCheck); err != nil {
 			return err
 		}
 		for featureID := range featuresToCheck {
-			_, err := productfeature.New(&stripe.ProductFeatureParams{
+			_, err := stripeClient.ProductFeatures.New(&stripe.ProductFeatureParams{
 				Product:            &prod.ID,
 				EntitlementFeature: &featureID,
 			})
@@ -202,8 +202,8 @@ func EnsureAttachAll(featureIDs map[string]SyncedFeature) error {
 	return nil
 }
 
-func SearchProductForFeatures(productID string, featuresToCheck map[string]SyncedFeature) error {
-	productFeaturesList := productfeature.List(&stripe.ProductFeatureListParams{
+func SearchProductForFeatures(stripeClient *stripeclient.API, productID string, featuresToCheck map[string]SyncedFeature) error {
+	productFeaturesList := stripeClient.ProductFeatures.List(&stripe.ProductFeatureListParams{
 		Product: &productID,
 	})
 	for productFeaturesList.Next() {
