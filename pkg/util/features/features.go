@@ -14,8 +14,8 @@ const (
 )
 
 type SyncedFeature struct {
-	Feature stripe.EntitlementsFeature
-	Product stripe.Product
+	Feature *stripe.EntitlementsFeature
+	Product *stripe.Product
 }
 
 func EnsureFeatures(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature, features []*licenseapi.Feature, isLimit bool) error {
@@ -97,7 +97,7 @@ func EnsureFeatureExists(stripeClient *stripeclient.API, syncedFeatures map[stri
 		return fmt.Errorf("failed to create Stripe feature from feature %s: %v\n", *params.LookupKey, err)
 	}
 	syncedFeatures[feature.ID] = SyncedFeature{
-		Feature: *feature,
+		Feature: feature,
 	}
 	return nil
 }
@@ -117,32 +117,39 @@ func FindFeature(stripeClient *stripeclient.API, id string) (*SyncedFeature, err
 		return nil, fmt.Errorf("failed to ")
 	}
 	feat := &SyncedFeature{
-		Feature: *feature,
+		Feature: feature,
 	}
 	return feat, nil
 }
 
 func EnsureFeatureProducts(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature) error {
-	for _, feature := range syncedFeatures {
-		if err := EnsureFeatureProduct(stripeClient, feature); err != nil {
+	for key, feature := range syncedFeatures {
+		if feature.Product != nil {
+			continue
+		}
+
+		product, err := EnsureFeatureProduct(stripeClient, &feature)
+		if err != nil {
 			return err
 		}
+		feature.Product = product
+		syncedFeatures[key] = feature
 	}
 	return nil
 }
 
-func EnsureFeatureProduct(stripeClient *stripeclient.API, syncedFeature SyncedFeature) error {
+func EnsureFeatureProduct(stripeClient *stripeclient.API, syncedFeature *SyncedFeature) (*stripe.Product, error) {
 	productSearch := stripeClient.Products.Search(&stripe.ProductSearchParams{
 		SearchParams: stripe.SearchParams{
 			Query: fmt.Sprintf(metadataQueryFmt, licenseapi.MetadataKeyProductForFeature, syncedFeature.Feature.LookupKey),
 		},
 	})
 	if err := productSearch.Err(); err != nil {
-		return err
+		return nil, err
 	}
 	if productSearch.Next() {
 		// a product exists with features name
-		return nil
+		return productSearch.Product(), nil
 	}
 
 	usdCurrencyCode := "usd"
@@ -164,19 +171,17 @@ func EnsureFeatureProduct(stripeClient *stripeclient.API, syncedFeature SyncedFe
 		},
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	syncedFeature.Product = *product
-
 	_, err = stripeClient.ProductFeatures.New(&stripe.ProductFeatureParams{
-		Product:            &syncedFeature.Product.ID,
+		Product:            &product.ID,
 		EntitlementFeature: &syncedFeature.Feature.ID,
 	})
 	if err != nil {
-		return err
+		return nil, err
 	}
-	return nil
+	return product, nil
 }
 
 func EnsureAttachAll(stripeClient *stripeclient.API, features map[string]SyncedFeature) error {
