@@ -38,4 +38,8 @@ type Limit struct {
 	// Limit specifies the limit for this resource.
 	// +optional
 	Quantity *ResourceCount `json:"quantity,omitempty"`
+
+	// Name of the module that this limit belongs to
+	// +optional
+	Module string `json:"module,omitempty"`
 }

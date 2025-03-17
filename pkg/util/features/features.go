@@ -224,21 +224,14 @@ func EnsureAttachAll(
 		}
 		for featureID, feat := range featuresToCheck {
 			metadataHiddenValue, ok := feat.Feature.Metadata[licenseapi.MetadataKeyFeatureIsHidden]
-			if ok || metadataHiddenValue == licenseapi.MetadataValueTrue {
-				continue
-			}
-
-			metadataPreviewValue, ok := feat.Feature.Metadata[licenseapi.MetadataKeyFeatureIsPreview]
-			if ok || metadataPreviewValue == licenseapi.MetadataValueTrue {
-				continue
-			}
-
-			_, err := stripeClient.ProductFeatures.New(&stripe.ProductFeatureParams{
-				Product:            &prod.ID,
-				EntitlementFeature: &featureID,
-			})
-			if err != nil {
-				return err
+			if !ok || metadataHiddenValue != licenseapi.MetadataValueTrue {
+				_, err := stripeClient.ProductFeatures.New(&stripe.ProductFeatureParams{
+					Product:            &prod.ID,
+					EntitlementFeature: &featureID,
+				})
+				if err != nil {
+					return err
+				}
 			}
 		}
 	}
