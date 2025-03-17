@@ -18,7 +18,13 @@ type SyncedFeature struct {
 	Product *stripe.Product
 }
 
-func EnsureFeatures(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature, features []*licenseapi.Feature, isLimit bool) error {
+func EnsureFeatures(
+	stripeClient *stripeclient.API,
+	syncedFeatures map[string]SyncedFeature,
+	features []*licenseapi.Feature,
+	additionalAttachAllProducts []stripe.Product,
+	isLimit bool,
+) error {
 	err := EnsureStripeFeatures(stripeClient, syncedFeatures, features, isLimit)
 	if err != nil {
 		return err
@@ -29,7 +35,7 @@ func EnsureFeatures(stripeClient *stripeclient.API, syncedFeatures map[string]Sy
 	}
 
 	if !isLimit {
-		if err = EnsureAttachAll(stripeClient, syncedFeatures); err != nil {
+		if err = EnsureAttachAll(stripeClient, syncedFeatures, additionalAttachAllProducts); err != nil {
 			return err
 		}
 	}
@@ -184,7 +190,11 @@ func EnsureFeatureProduct(stripeClient *stripeclient.API, syncedFeature *SyncedF
 	return product, nil
 }
 
-func EnsureAttachAll(stripeClient *stripeclient.API, features map[string]SyncedFeature) error {
+func EnsureAttachAll(
+	stripeClient *stripeclient.API,
+	features map[string]SyncedFeature,
+	attachTo []stripe.Product,
+) error {
 	productSearch := stripeClient.Products.Search(&stripe.ProductSearchParams{
 		SearchParams: stripe.SearchParams{
 			Query: fmt.Sprintf(metadataQueryFmt, licenseapi.MetadataKeyAttachAll, licenseapi.MetadataValueTrue),
@@ -195,6 +205,18 @@ func EnsureAttachAll(stripeClient *stripeclient.API, features map[string]SyncedF
 	}
 	for productSearch.Next() {
 		prod := productSearch.Product()
+		attachTo = append(attachTo, *prod)
+	}
+
+	prodIDs := map[string]bool{}
+
+	for _, prod := range attachTo {
+		alreadyDone, ok := prodIDs[prod.ID]
+		if ok && alreadyDone {
+			continue
+		}
+		prodIDs[prod.ID] = true
+
 		featuresToCheck := maps.Clone(features)
 
 		if err := SearchProductForFeatures(stripeClient, prod.ID, featuresToCheck); err != nil {
