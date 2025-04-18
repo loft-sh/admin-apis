@@ -195,6 +195,9 @@ func EnsureAttachAll(
 	features map[string]SyncedFeature,
 	attachTo []stripe.Product,
 ) error {
+	if attachTo == nil {
+		attachTo = []stripe.Product{}
+	}
 	productSearch := stripeClient.Products.Search(&stripe.ProductSearchParams{
 		SearchParams: stripe.SearchParams{
 			Query: fmt.Sprintf(metadataQueryFmt, licenseapi.MetadataKeyAttachAll, licenseapi.MetadataValueTrue),
