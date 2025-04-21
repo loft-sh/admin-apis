@@ -20,10 +20,23 @@ const (
 %s
 )
 
+var featureDates = map[string]string{
+%s
+}
+
 func GetFeatures() []FeatureName {
 	return []FeatureName{
 %s
 	}
+}
+
+// GetAllowedBefore returns the allowBefore date for a feature, if defined.
+// If the feature is not in the map, it returns an empty string.
+func GetAllowedBefore(featureName string) string {
+	if date, exists := featureDates[featureName]; exists {
+		return date
+	}
+	return ""
 }
 `
 	defaultLicenseFileTemplate = `package licenseapi
@@ -96,7 +109,7 @@ func main() {
 		panic(err)
 	}
 
-	_, err = f.WriteString(fmt.Sprintf(featuresFileTemplate, generateFeatureConstantsBody(features), generateFeatureSliceBody(features)))
+	_, err = f.WriteString(fmt.Sprintf(featuresFileTemplate, generateFeatureConstantsBody(features), writeFeatureDates(features), generateFeatureSliceBody(features)))
 	if err != nil {
 		panic(err)
 	}
@@ -110,6 +123,16 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func writeFeatureDates(features []*licenseapi.Feature) string {
+	var result string
+	for _, feature := range features {
+		if !feature.AllowBefore.IsZero() {
+			result += fmt.Sprintf("\t%q: %q,\n", feature.Name, feature.AllowBefore.Format("2006-01-02"))
+		}
+	}
+	return result
 }
 
 func generateFeatureConstantsBody(features []*licenseapi.Feature) string {
