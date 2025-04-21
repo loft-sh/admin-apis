@@ -42,5 +42,5 @@ Removing a feature will have no effect in Stripe. Stripe features exist indefini
 1. Create token in Stripe sandbox
 2. run
 ```
-STRIPE_API_TOKEN=<sandbox-token> just upload-ci-local
+STRIPE_API_KEY=<sandbox-token> just upload-ci-local
 ```
