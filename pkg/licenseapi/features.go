@@ -100,11 +100,6 @@ const (
 
 )
 
-var featureDates = map[string]string{
-	"project-quotas": "2025-05-31",
-
-}
-
 func GetFeatures() []FeatureName {
 	return []FeatureName{
 		VirtualCluster,
@@ -155,13 +150,4 @@ func GetFeatures() []FeatureName {
 		ResolveDns,
 		IstioIntegration,
 	}
-}
-
-// GetAllowedBefore returns the allowBefore date for a feature, if defined.
-// If the feature is not in the map, it returns an empty string.
-func GetAllowedBefore(featureName string) string {
-	if date, exists := featureDates[featureName]; exists {
-		return date
-	}
-	return ""
 }

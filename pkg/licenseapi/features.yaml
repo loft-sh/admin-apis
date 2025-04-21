@@ -89,6 +89,7 @@ features: # array of features
   displayName: "vNode Runtime"
 - name: "project-quotas"
   displayName: "Project Quotas"
+# Define the time in UTC 
   allowBefore: "2025-05-31T00:00:00Z"
 - name: "resolve-dns"
   displayName: "Resolve DNS"
