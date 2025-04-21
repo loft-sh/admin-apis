@@ -92,4 +92,5 @@ features: # array of features
   allowBefore: "2025-05-31T00:00:00Z"
 - name: "resolve-dns"
   displayName: "Resolve DNS"
-
+- name: "istio-integration"
+  displayName: "Istio Integration"
