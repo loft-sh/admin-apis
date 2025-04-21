@@ -209,6 +209,10 @@ func New() *License {
 						DisplayName: "Resolve DNS",
 						Name:        "resolve-dns",
 					},
+					{
+						DisplayName: "Istio Integration",
+						Name:        "istio-integration",
+					},
 				},
 			},
 		},

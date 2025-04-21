@@ -94,3 +94,5 @@ features: # array of features
   displayName: "Project Quotas"
 - name: "resolve-dns"
   displayName: "Resolve DNS"
+- name: "istio-integration"
+  displayName: "Istio Integration"

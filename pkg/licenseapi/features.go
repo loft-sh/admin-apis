@@ -96,6 +96,8 @@ const (
 
 	ResolveDns FeatureName = "resolve-dns" // Resolve DNS
 
+	IstioIntegration FeatureName = "istio-integration" // Istio Integration
+
 )
 
 func GetFeatures() []FeatureName {
@@ -146,5 +148,6 @@ func GetFeatures() []FeatureName {
 		VNodeRuntime,
 		ProjectQuotas,
 		ResolveDns,
+		IstioIntegration,
 	}
 }
