@@ -18,14 +18,6 @@ type SyncedFeature struct {
 	Product *stripe.Product
 }
 
-type subType int
-
-const (
-	Original subType = iota
-	Preview  subType = iota
-	ActiveLimit
-)
-
 func EnsureFeatures(
 	stripeClient *stripeclient.API,
 	syncedFeatures map[string]SyncedFeature,
@@ -52,20 +44,20 @@ func EnsureFeatures(
 
 func EnsureStripeFeatures(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature, features []*licenseapi.Feature, isLimit bool) error {
 	for _, f := range features {
-		err := EnsureFeatureExists(stripeClient, syncedFeatures, f.Name, f.DisplayName, GetMetadata(f, isLimit, Original))
+		err := EnsureFeatureExists(stripeClient, syncedFeatures, f.Name, f.DisplayName, BuildMetadata(f, isLimit, nil))
 		if err != nil {
 			return err
 		}
 
 		if f.Preview {
-			err = EnsureFeatureExists(stripeClient, syncedFeatures, f.Name+"-preview", f.DisplayName+" [Preview]", GetMetadata(f, isLimit, Preview))
+			err = EnsureFeatureExists(stripeClient, syncedFeatures, f.Name+"-preview", f.DisplayName+" [Preview]", BuildMetadata(f, isLimit, map[string]string{licenseapi.MetadataKeyFeatureIsPreview: licenseapi.MetadataValueTrue}))
 			if err != nil {
 				return err
 			}
 		}
 
 		if isLimit {
-			err = EnsureFeatureExists(stripeClient, syncedFeatures, f.Name+"-active", f.DisplayName+" [Active]", GetMetadata(f, isLimit, ActiveLimit))
+			err = EnsureFeatureExists(stripeClient, syncedFeatures, f.Name+"-active", f.DisplayName+" [Active]", BuildMetadata(f, isLimit, map[string]string{licenseapi.MetadataKeyFeatureLimitTypeActive: licenseapi.MetadataValueTrue}))
 			if err != nil {
 				return err
 			}
@@ -74,32 +66,22 @@ func EnsureStripeFeatures(stripeClient *stripeclient.API, syncedFeatures map[str
 	return nil
 }
 
-// GetMetadata builds and returns a map containing metadata based on the feature and subType passed.
-// If an invalid subType is passed, then "Original" will be assumed.
-func GetMetadata(feature *licenseapi.Feature, isLimit bool, subType subType) map[string]string {
-	extraMetadata := map[string]string{}
+func BuildMetadata(feature *licenseapi.Feature, isLimit bool, extraMetadata map[string]string) map[string]string {
+	metadata := map[string]string{}
 	if isLimit {
-		extraMetadata[licenseapi.MetadataKeyFeatureIsLimit] = licenseapi.MetadataValueTrue
+		metadata[licenseapi.MetadataKeyFeatureIsLimit] = licenseapi.MetadataValueTrue
 		feature.Name = licenseapi.LimitsPrefix + feature.Name
 	}
 
 	if feature.Status == string(licenseapi.FeatureStatusHidden) {
-		extraMetadata[licenseapi.MetadataKeyFeatureIsHidden] = licenseapi.MetadataValueTrue
+		metadata[licenseapi.MetadataKeyFeatureIsHidden] = licenseapi.MetadataValueTrue
 	}
 
-	switch subType {
-	case Preview:
-		extraMetadata[licenseapi.MetadataKeyFeatureIsPreview] = licenseapi.MetadataValueTrue
-		return extraMetadata
-	case ActiveLimit:
-		extraMetadata[licenseapi.MetadataKeyFeatureLimitType] = licenseapi.MetadataKeyFeatureLimitTypeActive
-		return extraMetadata
-	case Original:
-		// this is not necessary but is here to communicate that Original is the default
-		fallthrough
-	default:
-		return extraMetadata
+	for key, value := range extraMetadata {
+		metadata[key] = value
 	}
+
+	return metadata
 }
 
 func EnsureFeatureExists(stripeClient *stripeclient.API, syncedFeatures map[string]SyncedFeature, name, displayName string, extraMetadata map[string]string) error {
