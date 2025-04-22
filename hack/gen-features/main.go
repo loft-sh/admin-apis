@@ -166,8 +166,12 @@ func main() {
 func generateFeatureAllowedBeforeMap(features []*licenseapi.Feature) string {
 	var featureAllowBeforeMap string
 	for _, feature := range features {
-		if !feature.AllowBefore.IsZero() {
-			featureAllowBeforeMap += fmt.Sprintf("\t%s: %q,\n", hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)), feature.AllowBefore.Format(time.RFC3339))
+		if feature.AllowBefore != "" {
+			_, err := time.Parse(time.RFC3339, feature.AllowBefore)
+			if err != nil {
+				panic(err)
+			}
+			featureAllowBeforeMap += fmt.Sprintf("\t%s: %q,\n", hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)), feature.AllowBefore)
 		}
 	}
 	return strings.TrimSuffix(featureAllowBeforeMap, "\n")

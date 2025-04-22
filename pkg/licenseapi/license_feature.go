@@ -1,7 +1,5 @@
 package licenseapi
 
-import "time"
-
 // Feature contains information regarding to a feature
 // +k8s:openapi-gen=true
 // +k8s:deepcopy-gen=true
@@ -21,7 +19,7 @@ type Feature struct {
 	// AllowBefore is an optional timestamp. If set, licenses issued before this time are allowed
 	// to use the feature even if it's not included in the license.
 	// +optional
-	AllowBefore time.Time `json:"allowBefore,omitempty"`
+	AllowBefore string `json:"allowBefore,omitempty"`
 
 	// Status shows the status of the feature (see type FeatureStatus)
 	// +optional
