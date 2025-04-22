@@ -4,7 +4,7 @@ package licenseapi
 
 // Features
 const (
-	VirtualCluster FeatureName = "vclusters" // Virtual Cluster Management
+	VirtualCluster FeatureName = "vcluster" // Virtual Cluster Management
 
 	VirtualClusterSleepMode FeatureName = "vcluster-sleep-mode" // Sleep Mode for Virtual Clusters
 
@@ -62,7 +62,7 @@ const (
 
 	AutoIngressAuth FeatureName = "auto-ingress-authentication" // Automatic Auth For Ingresses
 
-	OIDCProvider FeatureName = "oidc-provider" // Loft as OIDC Provider
+	OIDCProvider FeatureName = "oidc-provider" // Platform as OIDC Provider
 
 	MultipleSSOProviders FeatureName = "multiple-sso-providers" // Multiple SSO Providers
 

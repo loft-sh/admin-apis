@@ -6,7 +6,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/loft-sh/admin-apis/hack/internal/featuresyaml"
+	"github.com/loft-sh/admin-apis/hack/internal/yamlparser"
 	"github.com/loft-sh/admin-apis/pkg/licenseapi"
 )
 
@@ -86,10 +86,16 @@ var (
 )
 
 func main() {
-	features, err := featuresyaml.ReadFeaturesYaml("../../pkg/licenseapi/features.yaml")
+	yamlContent := struct {
+		Features []*licenseapi.Feature `json:"features"`
+	}{}
+
+	err := yamlparser.ParseYAML("../../definitions/features.yaml", &yamlContent)
 	if err != nil {
 		panic(err)
 	}
+
+	features := yamlContent.Features
 
 	f, err := os.Create("../../pkg/licenseapi/features.go")
 	if err != nil {
