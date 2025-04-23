@@ -5,6 +5,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/loft-sh/admin-apis/hack/internal/yamlparser"
 	"github.com/loft-sh/admin-apis/pkg/licenseapi"
@@ -60,6 +61,46 @@ func New() *License {
 	}
 }
 `
+
+	featuresAllowedBeforeFileTemplate = `package licenseapi
+
+// This code was generated. Change features.yaml to add, remove, or edit features.
+
+import (
+	"errors"
+	"time"
+)
+
+var errNoAllowBefore = errors.New("feature not allowed before license's issued date")
+
+// featureToAllowBefore maps feature names to their corresponding
+// RFC3339-formatted allowBefore timestamps. If a license was issued before this
+// timestamp, the feature is allowed even if it is not explicitly included in the license.
+var featuresToAllowBefore = map[FeatureName]string{
+%s
+}
+
+// AllowedBeforeTime returns the parsed allowBefore time for a given feature.
+// If the feature does not have an allowBefore date, it returns errNoAllowBefore.
+// If the date is present but invalid, it returns the corresponding parsing error.
+func AllowedBeforeTime(featureName FeatureName) (*time.Time, error) {
+	if date, exists := featuresToAllowBefore[featureName]; exists {
+		t, err := time.Parse(time.RFC3339, date)
+		if err != nil {
+			return nil, err
+		}
+		return &t, nil
+
+	}
+	return nil, errNoAllowBefore
+}
+
+// IsAllowBeforeNotDefined determines whether the provided error is
+// errNoAllowBefore, indicating that the feature has no allowBefore date.
+func IsAllowBeforeNotDefined(err error) bool {
+	return errors.Is(err, errNoAllowBefore)
+}
+`
 )
 
 var (
@@ -107,6 +148,16 @@ func main() {
 		panic(err)
 	}
 
+	f, err = os.Create("../../pkg/licenseapi/features_allowed_before.go")
+	if err != nil {
+		panic(err)
+	}
+
+	_, err = f.WriteString(fmt.Sprintf(featuresAllowedBeforeFileTemplate, generateFeatureAllowedBeforeMap(features)))
+	if err != nil {
+		panic(err)
+	}
+
 	f, err = os.Create("../../pkg/licenseapi/license_new.go")
 	if err != nil {
 		panic(err)
@@ -116,6 +167,19 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+}
+
+func generateFeatureAllowedBeforeMap(features []*licenseapi.Feature) string {
+	var featureAllowBeforeMap string
+	for _, feature := range features {
+		if feature.AllowBefore != "" {
+			if _, err := time.Parse(time.RFC3339, feature.AllowBefore); err != nil {
+				panic(err)
+			}
+			featureAllowBeforeMap += fmt.Sprintf("\t%s: %q,\n", hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)), feature.AllowBefore)
+		}
+	}
+	return strings.TrimSuffix(featureAllowBeforeMap, "\n")
 }
 
 func generateFeatureConstantsBody(features []*licenseapi.Feature) string {
