@@ -16,6 +16,14 @@ var featuresToAllowBefore = map[FeatureName]string{
 	ProjectQuotas: "2025-05-31T00:00:00Z",
 }
 
+// GetFeaturesAllowedBefore returns list of features
+// to be allowed before license's issued time
+func GetFeaturesAllowedBefore() []FeatureName {
+	return []FeatureName{
+		ProjectQuotas,
+	}
+}
+
 // AllowedBeforeTime returns the parsed allowBefore time for a given feature.
 // If the feature does not have an allowBefore date, it returns errNoAllowBefore.
 // If the date is present but invalid, it returns the corresponding parsing error.

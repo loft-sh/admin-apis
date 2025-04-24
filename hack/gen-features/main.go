@@ -80,6 +80,14 @@ var featuresToAllowBefore = map[FeatureName]string{
 %s
 }
 
+// GetFeaturesAllowedBefore returns list of features
+// to be allowed before license's issued time
+func GetFeaturesAllowedBefore() []FeatureName {
+	return []FeatureName{
+%s
+	}
+}
+
 // AllowedBeforeTime returns the parsed allowBefore time for a given feature.
 // If the feature does not have an allowBefore date, it returns errNoAllowBefore.
 // If the date is present but invalid, it returns the corresponding parsing error.
@@ -153,7 +161,8 @@ func main() {
 		panic(err)
 	}
 
-	_, err = f.WriteString(fmt.Sprintf(featuresAllowedBeforeFileTemplate, generateFeatureAllowedBeforeMap(features)))
+	allowBeforeMap, AllowBeforeList := generateFeatureAllowedBeforeMap(features)
+	_, err = f.WriteString(fmt.Sprintf(featuresAllowedBeforeFileTemplate, allowBeforeMap, AllowBeforeList))
 	if err != nil {
 		panic(err)
 	}
@@ -169,17 +178,19 @@ func main() {
 	}
 }
 
-func generateFeatureAllowedBeforeMap(features []*licenseapi.Feature) string {
+func generateFeatureAllowedBeforeMap(features []*licenseapi.Feature) (string, string) {
 	var featureAllowBeforeMap string
+	var featureAllowedBeforeList string
 	for _, feature := range features {
 		if feature.AllowBefore != "" {
 			if _, err := time.Parse(time.RFC3339, feature.AllowBefore); err != nil {
 				panic(err)
 			}
 			featureAllowBeforeMap += fmt.Sprintf("\t%s: %q,\n", hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)), feature.AllowBefore)
+			featureAllowedBeforeList += fmt.Sprintf(`		%s,`, hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)))
 		}
 	}
-	return strings.TrimSuffix(featureAllowBeforeMap, "\n")
+	return strings.TrimSuffix(featureAllowBeforeMap, "\n"), strings.TrimSuffix(featureAllowedBeforeList, "\n")
 }
 
 func generateFeatureConstantsBody(features []*licenseapi.Feature) string {
