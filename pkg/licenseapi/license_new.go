@@ -213,6 +213,10 @@ func New() *License {
 						DisplayName: "Istio Integration",
 						Name:        "istio-integration",
 					},
+					{
+						DisplayName: "Hybrid Scheduling",
+						Name:        "hybrid-scheduling",
+					},
 				},
 			},
 		},

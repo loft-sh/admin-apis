@@ -98,3 +98,5 @@ features: # array of features
   displayName: "Resolve DNS"
 - name: "istio-integration"
   displayName: "Istio Integration"
+- name: "hybrid-scheduling"
+  displayName: "Hybrid Scheduling"

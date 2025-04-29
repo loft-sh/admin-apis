@@ -98,6 +98,8 @@ const (
 
 	IstioIntegration FeatureName = "istio-integration" // Istio Integration
 
+	HybridScheduling FeatureName = "hybrid-scheduling" // Hybrid Scheduling
+
 )
 
 func GetFeatures() []FeatureName {
@@ -149,5 +151,6 @@ func GetFeatures() []FeatureName {
 		ProjectQuotas,
 		ResolveDns,
 		IstioIntegration,
+		HybridScheduling,
 	}
 }
