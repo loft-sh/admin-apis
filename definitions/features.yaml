@@ -23,7 +23,7 @@ features: # array of features
 - name: "vcp-distro-centralized-admission-control"
   displayName: "Centralized Admission Control"
 - name: "vcp-distro-generic-sync"
-  displayName: "Generic Sync"
+  displayName: "Custom Resource Sync"
 - name: "vcp-distro-translate-patches"
   displayName: "Translate Patches"
 - name: "vcp-distro-integrations-kube-virt"
