@@ -217,6 +217,10 @@ func New() *License {
 						DisplayName: "Hybrid Scheduling",
 						Name:        "hybrid-scheduling",
 					},
+					{
+						DisplayName: "Sync Namespaces toHost",
+						Name:        "sync-namespaces-tohost",
+					},
 				},
 			},
 		},

@@ -100,3 +100,5 @@ features: # array of features
   displayName: "Istio Integration"
 - name: "hybrid-scheduling"
   displayName: "Hybrid Scheduling"
+- name: "sync-namespaces-tohost"
+  displayName: "Sync Namespaces toHost"
