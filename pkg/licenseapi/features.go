@@ -100,6 +100,8 @@ const (
 
 	HybridScheduling FeatureName = "hybrid-scheduling" // Hybrid Scheduling
 
+	SyncNamespacesTohost FeatureName = "sync-namespaces-tohost" // Sync Namespaces toHost
+
 )
 
 func GetFeatures() []FeatureName {
@@ -152,5 +154,6 @@ func GetFeatures() []FeatureName {
 		ResolveDns,
 		IstioIntegration,
 		HybridScheduling,
+		SyncNamespacesTohost,
 	}
 }
