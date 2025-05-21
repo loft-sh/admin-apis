@@ -36,6 +36,8 @@ features: # array of features
   displayName: "FIPS"
 - name: "vcp-distro-external-database"
   displayName: "External Database"
+- name: "vcp-distro-private-nodes"
+  displayName: "Private Nodes"
 - name: "connector-external-database"
   displayName: "Database Connector"
 - name: "vcp-distro-sleep-mode"

@@ -40,6 +40,8 @@ const (
 
 	VirtualClusterProDistroExternalDatabase FeatureName = "vcp-distro-external-database" // External Database
 
+	VirtualClusterProDistroPrivateNodes FeatureName = "vcp-distro-private-nodes" // Private Nodes
+
 	ConnectorExternalDatabase FeatureName = "connector-external-database" // Database Connector
 
 	VirtualClusterProDistroSleepMode FeatureName = "vcp-distro-sleep-mode" // SleepMode
@@ -124,6 +126,7 @@ func GetFeatures() []FeatureName {
 		VirtualClusterProDistroIntegrationsCertManager,
 		VirtualClusterProDistroFips,
 		VirtualClusterProDistroExternalDatabase,
+		VirtualClusterProDistroPrivateNodes,
 		ConnectorExternalDatabase,
 		VirtualClusterProDistroSleepMode,
 		Devpod,
