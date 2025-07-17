@@ -46,7 +46,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/nektos/ac
 sudo mv bin/act /usr/local/bin
 ```
 2. Run
-```bahs
+```bash
 export STRIPE_API_KEY=<sandbox-token>
 just upload-ci-local
 ```
