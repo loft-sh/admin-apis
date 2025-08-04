@@ -186,3 +186,6 @@ features: # array of features
   displayName: "Sync Namespaces toHost"
   description: "Sync Namespaces ToHost provides fine grained control over how virtual cluster namespaces are exposed on the host cluster to scenarios like IAM integrations and custom schedulers"
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/sync/to-host/advanced/namespaces"
+- name: "usage-snapshots"
+  displayName: "Usage Snapshots"
+  description: "Create usage snapshots and store them in a database"

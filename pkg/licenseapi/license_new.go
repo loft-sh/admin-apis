@@ -225,6 +225,10 @@ func New() *License {
 						DisplayName: "Sync Namespaces toHost",
 						Name:        "sync-namespaces-tohost",
 					},
+					{
+						DisplayName: "Usage Snapshots",
+						Name:        "usage-snapshots",
+					},
 				},
 			},
 		},
