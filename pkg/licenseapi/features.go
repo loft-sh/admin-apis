@@ -104,6 +104,8 @@ const (
 
 	SyncNamespacesTohost FeatureName = "sync-namespaces-tohost" // Sync Namespaces toHost
 
+	UsageSnapshots FeatureName = "usage-snapshots" // Usage Snapshots
+
 )
 
 func GetFeatures() []FeatureName {
@@ -158,5 +160,6 @@ func GetFeatures() []FeatureName {
 		IstioIntegration,
 		HybridScheduling,
 		SyncNamespacesTohost,
+		UsageSnapshots,
 	}
 }
