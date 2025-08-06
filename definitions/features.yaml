@@ -66,6 +66,7 @@ features: # array of features
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/control-plane/components/backing-store/database/external"
 - name: "vcp-distro-private-nodes"
   displayName: "Private Nodes"
+  description: "Private Nodes enable hard tenant isolation through isolated control and data planes. The control planes run on shared clusters and the data plane is fully isolated from other tenants."
 - name: "connector-external-database"
   displayName: "Database Connector"
   description: "External Database Connector automates the provisioning, credential handling, and cleanup of databases for virtual clusters."
