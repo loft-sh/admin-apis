@@ -229,6 +229,10 @@ func New() *License {
 						DisplayName: "Schedule Virtual Clusters Snapshots",
 						Name:        "scheduled-snapshots",
 					},
+					{
+						DisplayName: "Private Nodes Tunnel",
+						Name:        "private-nodes-tunnel",
+					},
 				},
 			},
 		},
