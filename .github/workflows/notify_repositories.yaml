@@ -1,0 +1,52 @@
+# This workflow notifies other repositories when definitions change
+# to trigger staging license page deployments
+# Required configuration:
+#   - vars.NOTIFY_REPOS: JSON array of repositories (e.g., ["loft-sh/loft-enterprise"])
+#   - secrets.GH_ACCESS_TOKEN: GitHub token with repo scope
+# Reference: https://docs.github.com/en/rest/repos/repos#create-a-repository-dispatch-event
+name: Notify repositories of changes in definitions
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "definitions/**"
+# NOTE: repository_dispatch only triggers workflows on the default branch of target repos
+
+jobs:
+  notify-repositories:
+    if: vars.NOTIFY_REPOS != ''
+    concurrency:
+      group: notify-repos-${{ github.ref }}
+      cancel-in-progress: true
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        repository: ${{ fromJson(vars.NOTIFY_REPOS) }}
+
+    steps:
+      - name: Send repository_dispatch to ${{ matrix.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_ACCESS_TOKEN }}
+        run: |
+          COMMIT_SHA="${{ github.sha }}"
+          REPO="${{ matrix.repository }}"
+          echo "Notifying repository: $REPO"
+          curl --version
+          STATUS_CODE=$(curl -s -w "%{http_code}" -o response.txt -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Content-Type: application/json" \
+            https://api.github.com/repos/${REPO}/dispatches \
+            -d '
+            {"event_type":"update-admin-api-definitions","client_payload":{"sha":"'"${COMMIT_SHA}"'","ref":"${{ github.ref }}","branch":"${{ github.ref_name }}","repository":"${{ github.repository }}"}}'
+          )
+          printf "Status code: %s" "${STATUS_CODE}"
+          printf "Response body:\n\n %s" "$(cat response.txt)"
+          if [[ "${STATUS_CODE}" -lt 200 || "${STATUS_CODE}" -ge 300 ]]; then
+            echo "Failed to notify ${REPO}"
+            exit 1
+          fi
+          echo "Successfully notified ${REPO}"
