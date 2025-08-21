@@ -233,6 +233,10 @@ func New() *License {
 						DisplayName: "Private Nodes Tunnel",
 						Name:        "private-nodes-tunnel",
 					},
+					{
+						DisplayName: "Private Nodes Auto Nodes",
+						Name:        "private-nodes-auto-nodes",
+					},
 				},
 			},
 		},

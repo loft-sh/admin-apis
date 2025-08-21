@@ -196,3 +196,7 @@ features: # array of features
   displayName: "Private Nodes Tunnel"
   description: "Private Nodes Tunnel connects private nodes to the virtual cluster control plane over a secure VPN network"
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/private-nodes"
+- name: "private-nodes-auto-nodes"
+  displayName: "Private Nodes Auto Nodes"
+  description: "Private Nodes Auto Nodes automatically scales up and down and provisions private nodes for virtual clusters using different providers."
+  docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/private-nodes"

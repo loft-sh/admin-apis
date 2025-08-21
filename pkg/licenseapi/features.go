@@ -108,6 +108,8 @@ const (
 
 	PrivateNodesTunnel FeatureName = "private-nodes-tunnel" // Private Nodes Tunnel
 
+	PrivateNodesAutoNodes FeatureName = "private-nodes-auto-nodes" // Private Nodes Auto Nodes
+
 )
 
 func GetFeatures() []FeatureName {
@@ -164,5 +166,6 @@ func GetFeatures() []FeatureName {
 		SyncNamespacesTohost,
 		ScheduledSnapshots,
 		PrivateNodesTunnel,
+		PrivateNodesAutoNodes,
 	}
 }
