@@ -230,8 +230,8 @@ func New() *License {
 						Name:        "scheduled-snapshots",
 					},
 					{
-						DisplayName: "Private Nodes Tunnel",
-						Name:        "private-nodes-tunnel",
+						DisplayName: "Private Nodes VPN",
+						Name:        "private-nodes-vpn",
 					},
 					{
 						DisplayName: "Private Nodes Auto Nodes",
