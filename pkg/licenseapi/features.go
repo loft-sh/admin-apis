@@ -106,7 +106,7 @@ const (
 
 	ScheduledSnapshots FeatureName = "scheduled-snapshots" // Schedule Virtual Clusters Snapshots
 
-	PrivateNodesTunnel FeatureName = "private-nodes-tunnel" // Private Nodes Tunnel
+	PrivateNodesVpn FeatureName = "private-nodes-vpn" // Private Nodes VPN
 
 	PrivateNodesAutoNodes FeatureName = "private-nodes-auto-nodes" // Private Nodes Auto Nodes
 
@@ -165,7 +165,7 @@ func GetFeatures() []FeatureName {
 		HybridScheduling,
 		SyncNamespacesTohost,
 		ScheduledSnapshots,
-		PrivateNodesTunnel,
+		PrivateNodesVpn,
 		PrivateNodesAutoNodes,
 	}
 }
