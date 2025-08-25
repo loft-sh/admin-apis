@@ -237,6 +237,10 @@ func New() *License {
 						DisplayName: "Private Nodes Auto Nodes",
 						Name:        "private-nodes-auto-nodes",
 					},
+					{
+						DisplayName: "Disable Platform Database",
+						Name:        "disable-platform-db",
+					},
 				},
 			},
 		},

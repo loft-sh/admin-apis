@@ -110,6 +110,8 @@ const (
 
 	PrivateNodesAutoNodes FeatureName = "private-nodes-auto-nodes" // Private Nodes Auto Nodes
 
+	DisablePlatformDb FeatureName = "disable-platform-db" // Disable Platform Database
+
 )
 
 func GetFeatures() []FeatureName {
@@ -167,5 +169,6 @@ func GetFeatures() []FeatureName {
 		ScheduledSnapshots,
 		PrivateNodesVpn,
 		PrivateNodesAutoNodes,
+		DisablePlatformDb,
 	}
 }
