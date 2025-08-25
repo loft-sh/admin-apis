@@ -48,6 +48,9 @@ type InstanceCreateOutput struct {
 	CurrentTime int64    `json:"currentTime"`
 }
 
+// PlatformDatabase contains information about the local platform database installation
+// +k8s:openapi-gen=true
+// +k8s:deepcopy-gen=true
 type PlatformDatabase struct {
 	IsReady           bool   `json:"isReady"`
 	CreationTimestamp string `json:"creationTimestamp"`
