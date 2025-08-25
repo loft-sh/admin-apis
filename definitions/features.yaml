@@ -200,3 +200,6 @@ features: # array of features
   displayName: "Private Nodes Auto Nodes"
   description: "Private Nodes Auto Nodes automatically scales up and down and provisions private nodes for virtual clusters using different providers."
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/private-nodes"
+- name: "disable-platform-db"
+  displayName: "Disable Platform Database"
+  description: "Disables the installation and management of the platform database by the platform."
