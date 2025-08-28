@@ -231,7 +231,11 @@ func (in *InstanceCreateInput) DeepCopyInto(out *InstanceCreateInput) {
 		*out = new(string)
 		**out = **in
 	}
-	out.PlatformDatabase = in.PlatformDatabase
+	if in.PlatformDatabase != nil {
+		in, out := &in.PlatformDatabase, &out.PlatformDatabase
+		*out = new(PlatformDatabase)
+		**out = **in
+	}
 	return
 }
 

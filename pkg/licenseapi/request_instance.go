@@ -36,7 +36,7 @@ type InstanceCreateInput struct {
 	DebugInstanceID *string `json:"debugInstanceID,omitempty" form:"debugInstanceID" hash:"-"`
 
 	// PlatformDatabase reports details about the platform database to the license service
-	PlatformDatabase PlatformDatabase `json:"isPlatformDatabaseReady,omitempty" form:"isPlatformDatabaseReady"`
+	PlatformDatabase *PlatformDatabase `json:"platformDatabase,omitempty" form:"platformDatabase"`
 }
 
 // InstanceCreateOutput is the struct holding all information returned from "instance create"
