@@ -226,7 +226,7 @@ func New() *License {
 						Name:        "sync-namespaces-tohost",
 					},
 					{
-						DisplayName: "Schedule Virtual Clusters Snapshots",
+						DisplayName: "Auto Snapshots",
 						Name:        "scheduled-snapshots",
 					},
 					{
