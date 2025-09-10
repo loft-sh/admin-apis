@@ -52,6 +52,7 @@ type InstanceCreateOutput struct {
 // +k8s:openapi-gen=true
 // +k8s:deepcopy-gen=true
 type PlatformDatabase struct {
-	IsReady           bool   `json:"isReady"`
-	CreationTimestamp string `json:"creationTimestamp"`
+	IsReady               bool   `json:"isReady"`
+	CreationTimestamp     string `json:"creationTimestamp"`
+	LatestUpdateTimestamp string `json:"latestUpdateTimestamp"`
 }
