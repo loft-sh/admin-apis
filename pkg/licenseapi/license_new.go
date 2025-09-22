@@ -241,6 +241,10 @@ func New() *License {
 						DisplayName: "Disable Platform Database",
 						Name:        "disable-platform-db",
 					},
+					{
+						DisplayName: "Standalone",
+						Name:        "standalone",
+					},
 				},
 			},
 		},
