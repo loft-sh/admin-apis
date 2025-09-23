@@ -112,6 +112,8 @@ const (
 
 	DisablePlatformDB FeatureName = "disable-platform-db" // Disable Platform Database
 
+	Standalone FeatureName = "standalone" // Standalone
+
 )
 
 func GetFeatures() []FeatureName {
@@ -170,5 +172,6 @@ func GetFeatures() []FeatureName {
 		PrivateNodesVpn,
 		PrivateNodesAutoNodes,
 		DisablePlatformDB,
+		Standalone,
 	}
 }
