@@ -78,7 +78,7 @@ features: # array of features
   docsLink: "https://www.vcluster.com/docs/platform/administer/connector/database"
 - name: "connector-external-database-eks-pod-identity"
   displayName: "EKS Pod Identity for External Database Connections"
-  description: "Configures EKS Pod Identity so virtual clusters can connect using RDS IAM Authentication when using an RDS external database."
+  description: "Use EKS Pod Identity to connect virtual clusters to an external RDS database."
   docsLink: "https://www.vcluster.com/docs/platform/administer/connector/database"
 - name: "vcp-distro-sleep-mode"
   displayName: "SleepMode"
