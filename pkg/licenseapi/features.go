@@ -26,7 +26,7 @@ const (
 
 	VirtualClusterProDistroCentralizedAdmissionControl FeatureName = "vcp-distro-centralized-admission-control" // Centralized Admission Control
 
-	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
+	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Custom Resource Syncing
 
 	VirtualClusterProDistroTranslatePatches FeatureName = "vcp-distro-translate-patches" // Translate Patches
 

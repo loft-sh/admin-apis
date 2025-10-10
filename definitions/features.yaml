@@ -38,7 +38,7 @@ features: # array of features
   description: "Central Admission Control enables administrators to centrally enforce custom policies for all virtual clusters."
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/policies/admission-control"
 - name: "vcp-distro-generic-sync"
-  displayName: "Generic Sync"
+  displayName: "Custom Resource Syncing"
   description: "Custom Resources (CRDs) sync ensures that user-defined Kubernetes resources and their definitions are properly synchronized between the host and virtual clusters for seamless operation."
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/experimental/#experimental-genericSync"
 - name: "vcp-distro-translate-patches"
