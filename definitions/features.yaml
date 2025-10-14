@@ -211,6 +211,7 @@ features: # array of features
 - name: "disable-platform-db"
   displayName: "Disable Platform Database"
   description: "Disables the installation and management of the platform database by the platform."
+  allowBefore: "2025-09-09T00:00:00Z"
 - name: "standalone"
   displayName: "Standalone"
   description: "Standalone is an alternative deployment model, where vCluster is installed directly onto bare-metal or VM nodes instead of an existing Kubernetes cluster."
