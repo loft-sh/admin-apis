@@ -188,7 +188,7 @@ func generateFeatureAllowedBeforeMap(features []*licenseapi.Feature) (string, st
 				panic(err)
 			}
 			featureAllowBeforeMap += fmt.Sprintf("\t%s: %q,\n", hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)), feature.AllowBefore)
-			featureAllowedBeforeList += fmt.Sprintf(`		%s,`, hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)))
+			featureAllowedBeforeList += fmt.Sprintf("\t\t%s,\n", hyphenatedToCamelCase(replaceAliasWithFull(feature.Name)))
 		}
 	}
 	return strings.TrimSuffix(featureAllowBeforeMap, "\n"), strings.TrimSuffix(featureAllowedBeforeList, "\n")
