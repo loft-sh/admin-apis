@@ -216,3 +216,6 @@ features: # array of features
   displayName: "Standalone"
   description: "Standalone is an alternative deployment model, where vCluster is installed directly onto bare-metal or VM nodes instead of an existing Kubernetes cluster."
   docsLink: "https://www.vcluster.com/docs/vcluster/deploy/control-plane/binary/"
+- name: "netris"
+  displayName: "Netris"
+  description: "Netris enables dynamic network automation for vCluster instances with private nodes"

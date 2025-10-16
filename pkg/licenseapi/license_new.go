@@ -253,6 +253,10 @@ func New() *License {
 						DisplayName: "Standalone",
 						Name:        "standalone",
 					},
+					{
+						DisplayName: "Netris",
+						Name:        "netris",
+					},
 				},
 			},
 		},

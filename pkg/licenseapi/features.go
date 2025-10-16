@@ -118,6 +118,8 @@ const (
 
 	Standalone FeatureName = "standalone" // Standalone
 
+	Netris FeatureName = "netris" // Netris
+
 )
 
 func GetFeatures() []FeatureName {
@@ -179,5 +181,6 @@ func GetFeatures() []FeatureName {
 		PrivateNodesAutoNodes,
 		DisablePlatformDB,
 		Standalone,
+		Netris,
 	}
 }
