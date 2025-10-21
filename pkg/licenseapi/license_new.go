@@ -257,6 +257,10 @@ func New() *License {
 						DisplayName: "Netris",
 						Name:        "netris",
 					},
+					{
+						DisplayName: "KubeVip",
+						Name:        "kube-vip",
+					},
 				},
 			},
 		},

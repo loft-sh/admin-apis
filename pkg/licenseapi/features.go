@@ -120,6 +120,8 @@ const (
 
 	Netris FeatureName = "netris" // Netris
 
+	KubeVip FeatureName = "kube-vip" // KubeVip
+
 )
 
 func GetFeatures() []FeatureName {
@@ -182,5 +184,6 @@ func GetFeatures() []FeatureName {
 		DisablePlatformDB,
 		Standalone,
 		Netris,
+		KubeVip,
 	}
 }

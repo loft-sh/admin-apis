@@ -219,3 +219,6 @@ features: # array of features
 - name: "netris"
   displayName: "Netris"
   description: "Netris enables dynamic network automation for vCluster instances with private nodes"
+- name: "kube-vip"
+  displayName: "KubeVip"
+  description: "KubeVip announces the control plane endpoint IP on layer 2 on one vCluster control plane instance with automatic failover."
