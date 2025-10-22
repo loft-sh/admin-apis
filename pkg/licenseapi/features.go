@@ -120,7 +120,7 @@ const (
 
 	Netris FeatureName = "netris" // Netris
 
-	KubeVip FeatureName = "kube-vip" // KubeVip
+	KubeVip FeatureName = "kube-vip" // Kube-vip Integration
 
 )
 
