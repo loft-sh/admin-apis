@@ -70,7 +70,7 @@ func New() *License {
 						Name:        "vcp-distro-centralized-admission-control",
 					},
 					{
-						DisplayName: "Generic Sync",
+						DisplayName: "Custom Resource Syncing",
 						Name:        "vcp-distro-generic-sync",
 					},
 					{
