@@ -7,6 +7,9 @@ modules:
       - "vcluster-host-path-mapper"
       - "vcluster-enterprise-plugins"
       - "project-quotas"
+    limits:
+      - name: virtual-cluster-instance
+        displayName: "Virtual Clusters"
   - name: "vcluster-pro-distro"
     displayName: "vCluster Pro Distro"
     features:
@@ -33,6 +36,9 @@ modules:
       - "sync-namespaces-tohost"
   - name: "kubernetes-clusters"
     displayName: "Kubernetes Clusters"
+    limits:
+      - name: "connected-cluster"
+        displayName: "Connected Clusters"
     features:
       - "connected-clusters"
       - "cluster-access"
@@ -46,6 +52,9 @@ modules:
       - "rancher-integration"
   - name: "auth-audit-logging"
     displayName: "Authentication & Audit Logging"
+    limits:
+      - name: "user"
+        displayName: "Users"
     features:
       - "sso-authentication"
       - "audit-logging"
@@ -58,6 +67,9 @@ modules:
       - "vnode-runtime"
   - name: "deployment-modes"
     displayName: "Deployment Modes"
+    limits:
+      - name: instance
+        displayName: "Instances"
     features:
       - "ha-mode"
       - "multi-region-mode"
@@ -70,6 +82,9 @@ modules:
       - "vault-integration"
   - name: "kubernetes-namespaces"
     displayName: "Kubernetes Namespaces"
+    limits:
+      - name: "space-instance"
+        displayName: "Namespaces"
     features:
       - "namespaces"
       - "namespace-sleep-mode"
@@ -82,3 +97,6 @@ modules:
     displayName: "Dev Environments"
     features:
       - "devpod"
+    limits:
+      - name: devpod-workspace-instance
+        displayName: "Dev Environments"
