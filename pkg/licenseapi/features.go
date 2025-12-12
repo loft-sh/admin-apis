@@ -122,7 +122,7 @@ const (
 
 	KubeVip FeatureName = "kube-vip" // Kube-vip Integration
 
-	CrossVirtualClusterApis FeatureName = "cross-vcluster-apis" // Cross vCluster APIs
+	VirtualClusterProxyResources FeatureName = "vcluster-proxy-resources" // vCluster Proxy Resources
 
 )
 
@@ -187,6 +187,6 @@ func GetFeatures() []FeatureName {
 		Standalone,
 		Netris,
 		KubeVip,
-		CrossVirtualClusterApis,
+		VirtualClusterProxyResources,
 	}
 }
