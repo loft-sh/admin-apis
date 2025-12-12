@@ -262,8 +262,8 @@ func New() *License {
 						Name:        "kube-vip",
 					},
 					{
-						DisplayName: "Cross vCluster APIs",
-						Name:        "cross-vcluster-apis",
+						DisplayName: "vCluster Proxy Resources",
+						Name:        "vcluster-proxy-resources",
 					},
 				},
 			},
