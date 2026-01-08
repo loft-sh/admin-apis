@@ -23,6 +23,7 @@ jobs:
     - name: Check go generate changes
       run: |
         go generate ./...
+        gofmt -s -w .
         if [[ ! -z $(git diff) ]]; then
           echo "go generate resulted in changed files. Run go generate and commit the changes."
           exit 1;
