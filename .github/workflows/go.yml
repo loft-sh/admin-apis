@@ -5,25 +5,25 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.22'
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.22"
 
-    - name: Check go generate changes
-      run: |
-        go generate ./...
-        if [[ ! -z $(git diff) ]]; then
-          echo "go generate resulted in changed files. Run go generate and commit the changes."
-          exit 1;
-        fi
+      - name: Check go generate changes
+        run: |
+          go generate ./...
+          if [[ ! -z $(git diff) ]]; then
+            echo "go generate resulted in changed files. Run go generate and commit the changes."
+            exit 1;
+          fi

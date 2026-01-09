@@ -26,39 +26,11 @@ func GetFeatures() []FeatureName {
 %s
 	}
 }
-`
-	defaultLicenseFileTemplate = `package licenseapi
 
-// This code was generated. Change features.yaml to add, remove, or edit features.
-
-import (
-	"cmp"
-	"slices"
-)
-
-func New() *License {
-	limits := make([]*Limit, 0, len(Limits))
-	for _, limit := range Limits {
-		limits = append(limits, limit)
-	}
-	slices.SortFunc(limits, func(a, b *Limit) int {
-		return cmp.Compare(a.Name, b.Name)
-	})
-
-	// Sorting features by module is not requires here. However, to maintain backwards compatibility, the structure of
-	// features being contained within a module is still necessary. Therefore, all features are now returned in one module.
-	return &License{
-		Modules: []*Module{
-			{
-				DisplayName: "All Features",
-				Name:        string(VirtualClusterModule),
-				Limits:      limits,
-				Features: []*Feature{
-%s
-				},
-			},
-		},
-	}
+func GetAllFeatures() []*Feature {
+	return []*Feature{
+ %s
+ 	}
 }
 `
 
@@ -152,7 +124,7 @@ func main() {
 		panic(err)
 	}
 
-	_, err = f.WriteString(fmt.Sprintf(featuresFileTemplate, generateFeatureConstantsBody(features), generateFeatureSliceBody(features)))
+	_, err = f.WriteString(fmt.Sprintf(featuresFileTemplate, generateFeatureConstantsBody(features), generateFeatureSliceBody(features), generateAllFeatures(features)))
 	if err != nil {
 		panic(err)
 	}
@@ -164,16 +136,6 @@ func main() {
 
 	allowBeforeMap, AllowBeforeList := generateFeatureAllowedBeforeMap(features)
 	_, err = f.WriteString(fmt.Sprintf(featuresAllowedBeforeFileTemplate, allowBeforeMap, AllowBeforeList))
-	if err != nil {
-		panic(err)
-	}
-
-	f, err = os.Create("../../pkg/licenseapi/license_new.go")
-	if err != nil {
-		panic(err)
-	}
-
-	_, err = f.WriteString(fmt.Sprintf(defaultLicenseFileTemplate, generatedDefaultLicenseBody(features)))
 	if err != nil {
 		panic(err)
 	}
@@ -231,16 +193,18 @@ func replaceAliasWithFull(feature string) string {
 	return feature
 }
 
-func generatedDefaultLicenseBody(features []*licenseapi.Feature) string {
-	moduleFeatures := ""
+func generateAllFeatures(features []*licenseapi.Feature) string {
+	featuresSlice := ""
+
 	for _, feature := range features {
-		moduleFeatures += fmt.Sprintf(`					{
-						DisplayName: "%s",
-						Name:        "%s",
-					},
+		featuresSlice += fmt.Sprintf(`		{
+			DisplayName: "%s",
+			Name:        "%s",
+		},
 `, feature.DisplayName, feature.Name)
 	}
-	return strings.TrimSuffix(moduleFeatures, "\n")
+	return strings.TrimSuffix(featuresSlice, "\n")
+
 }
 
 func hyphenatedToCamelCase(name string) string {

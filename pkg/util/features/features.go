@@ -259,3 +259,14 @@ func SearchProductForFeatures(stripeClient *stripeclient.API, productID string, 
 	}
 	return nil
 }
+
+func GetFeatureDisplayName(featureName string) (string, error) {
+	features := licenseapi.GetAllFeatures()
+
+	for _, feature := range features {
+		if feature.Name == featureName {
+			return feature.DisplayName, nil
+		}
+	}
+	return "", fmt.Errorf("no feature found with name %s", featureName)
+}
