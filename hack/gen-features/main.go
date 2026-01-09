@@ -27,9 +27,10 @@ func GetFeatures() []FeatureName {
 	}
 }
 
-func GetAllFeatures() []*Feature  {
- return []*Feature {
- %s}
+func GetAllFeatures() []*Feature {
+	return []*Feature{
+ %s
+ 	}
 }
 `
 
@@ -196,10 +197,10 @@ func generateAllFeatures(features []*licenseapi.Feature) string {
 	featuresSlice := ""
 
 	for _, feature := range features {
-		featuresSlice += fmt.Sprintf(`					{
-						DisplayName: "%s",
-						Name:        "%s",
-					},
+		featuresSlice += fmt.Sprintf(`		{
+			DisplayName: "%s",
+			Name:        "%s",
+		},
 `, feature.DisplayName, feature.Name)
 	}
 	return strings.TrimSuffix(featuresSlice, "\n")

@@ -13,7 +13,7 @@ var errNoAllowBefore = errors.New("feature not allowed before license's issued d
 // RFC3339-formatted allowBefore timestamps. If a license was issued before this
 // timestamp, the feature is allowed even if it is not explicitly included in the license.
 var featuresToAllowBefore = map[FeatureName]string{
-	ProjectQuotas:     "2025-05-31T00:00:00Z",
+	ProjectQuotas: "2025-05-31T00:00:00Z",
 	DisablePlatformDB: "2025-09-09T00:00:00Z",
 }
 

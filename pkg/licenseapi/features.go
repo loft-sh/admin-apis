@@ -193,7 +193,7 @@ func GetFeatures() []FeatureName {
 
 func GetAllFeatures() []*Feature {
 	return []*Feature{
-		{
+ 		{
 			DisplayName: "Virtual Cluster Management",
 			Name:        "vclusters",
 		},
@@ -432,5 +432,6 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "vCluster Proxy Resources",
 			Name:        "vcluster-proxy-resources",
-		}}
+		},
+ 	}
 }

@@ -18,7 +18,6 @@ gen:
     -O zz_generated.deepcopy \
     -o ./
   go generate ./...
-  gofmt -s -w . # ensure go formatting after generation
 
 upload-ci-local:
   act workflow_dispatch -v -W .github/workflows/upload.yaml -s STRIPE_API_KEY=$STRIPE_API_KEY
