@@ -7,6 +7,7 @@ modules:
       - "vcluster-host-path-mapper"
       - "vcluster-enterprise-plugins"
       - "project-quotas"
+      - "scheduled-snapshots"
     limits:
       - name: virtual-cluster-instance
         displayName: "Virtual Clusters"
@@ -29,13 +30,21 @@ modules:
       - "vcp-distro-integrations-cert-manager"
       - "vcp-distro-fips"
       - "vcp-distro-external-database"
+      - "external-database-rds-iam"
       - "vcp-distro-private-nodes"
+      - "private-nodes-vpn"
+      - "private-nodes-auto-nodes"
       - "connector-external-database"
+      - "connector-external-database-eks-pod-identity"
       - "vcp-distro-sleep-mode"
       - "resolve-dns"
       - "istio-integration"
       - "hybrid-scheduling"
       - "sync-namespaces-tohost"
+      - "vcluster-proxy-resources"
+      - "standalone"
+      - "netris"
+      - "kube-vip"
   - name: "kubernetes-clusters"
     displayName: "Kubernetes Clusters"
     limits:
@@ -76,6 +85,7 @@ modules:
       - "ha-mode"
       - "multi-region-mode"
       - "air-gapped-mode"
+      - "disable-platform-db"
   - name: "secrets-management"
     displayName: "Secrets Management"
     features:
