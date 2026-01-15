@@ -1,13 +1,6 @@
 modules:
   - name: "virtual-clusters"
     displayName: "Virtual Clusters"
-    features:
-      - "vclusters"
-      - "vcluster-sleep-mode"
-      - "vcluster-host-path-mapper"
-      - "vcluster-enterprise-plugins"
-      - "project-quotas"
-      - "scheduled-snapshots"
     limits:
       - name: virtual-cluster-instance
         displayName: "Virtual Clusters"
@@ -15,100 +8,36 @@ modules:
         displayName: "Virtual Clusters (HA)"
   - name: "vcluster-pro-distro"
     displayName: "vCluster Pro Distro"
-    features:
-      - "vcp-distro-image"
-      - "vcp-distro-built-in-coredns"
-      - "vcp-distro-admission-control"
-      - "vcp-distro-sync-patches"
-      - "vcp-distro-embedded-etcd"
-      - "vcp-distro-isolated-cp"
-      - "vcp-distro-centralized-admission-control"
-      - "vcp-distro-generic-sync"
-      - "vcp-distro-translate-patches"
-      - "vcp-distro-integrations-kube-virt"
-      - "vcp-distro-integrations-external-secrets"
-      - "vcp-distro-integrations-cert-manager"
-      - "vcp-distro-fips"
-      - "vcp-distro-external-database"
-      - "external-database-rds-iam"
-      - "vcp-distro-private-nodes"
-      - "private-nodes-vpn"
-      - "private-nodes-auto-nodes"
-      - "connector-external-database"
-      - "connector-external-database-eks-pod-identity"
-      - "vcp-distro-sleep-mode"
-      - "resolve-dns"
-      - "istio-integration"
-      - "hybrid-scheduling"
-      - "sync-namespaces-tohost"
-      - "vcluster-proxy-resources"
-      - "standalone"
-      - "netris"
-      - "kube-vip"
   - name: "kubernetes-clusters"
     displayName: "Kubernetes Clusters"
     limits:
       - name: "connected-cluster"
         displayName: "Connected Clusters"
-    features:
-      - "connected-clusters"
-      - "cluster-access"
-      - "cluster-roles"
   - name: "templating-gitops"
     displayName: "Templating & GitOps"
-    features:
-      - "apps"
-      - "template-versioning"
-      - "argo-integration"
-      - "rancher-integration"
   - name: "auth-audit-logging"
     displayName: "Authentication & Audit Logging"
     limits:
       - name: "user"
         displayName: "Users"
-    features:
-      - "sso-authentication"
-      - "audit-logging"
-      - "auto-ingress-authentication"
-      - "oidc-provider"
-      - "multiple-sso-providers"
   - name: "vnode"
     displayName: "vNode"
-    features:
-      - "vnode-runtime"
   - name: "deployment-modes"
     displayName: "Deployment Modes"
     limits:
       - name: instance
         displayName: "Instances"
-    features:
-      - "ha-mode"
-      - "multi-region-mode"
-      - "air-gapped-mode"
-      - "disable-platform-db"
   - name: "secrets-management"
     displayName: "Secrets Management"
-    features:
-      - "secrets"
-      - "secret-encryption"
-      - "vault-integration"
   - name: "kubernetes-namespaces"
     displayName: "Kubernetes Namespaces"
     limits:
       - name: "space-instance"
         displayName: "Namespaces"
-    features:
-      - "namespaces"
-      - "namespace-sleep-mode"
   - name: "ui-customization"
     displayName: "UI Customization"
-    features:
-      - "custom-branding"
-      - "advanced-ui-customizations"
   - name: "dev-environments"
     displayName: "Dev Environments"
-    features:
-      - "devpod"
     limits:
       - name: devpod-workspace-instance
         displayName: "Dev Environments"

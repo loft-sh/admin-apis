@@ -1,0 +1,115 @@
+# This code was generated. Change features.yaml or modules.yaml in the parent directory to add, remove, or edit modules.
+modules:
+- displayName: Authentication & Audit Logging
+  features:
+  - sso-authentication
+  - audit-logging
+  - auto-ingress-authentication
+  - oidc-provider
+  - multiple-sso-providers
+  limits:
+  - displayName: Users
+    name: user
+  name: auth-audit-logging
+- displayName: Deployment Modes
+  features:
+  - ha-mode
+  - multi-region-mode
+  - air-gapped-mode
+  - disable-platform-db
+  limits:
+  - displayName: Instances
+    name: instance
+  name: deployment-modes
+- displayName: Dev Environments
+  features:
+  - devpod
+  limits:
+  - displayName: Dev Environments
+    name: devpod-workspace-instance
+  name: dev-environments
+- displayName: Kubernetes Clusters
+  features:
+  - connected-clusters
+  - cluster-access
+  - cluster-roles
+  limits:
+  - displayName: Connected Clusters
+    name: connected-cluster
+  name: kubernetes-clusters
+- displayName: Kubernetes Namespaces
+  features:
+  - namespaces
+  - namespace-sleep-mode
+  limits:
+  - displayName: Namespaces
+    name: space-instance
+  name: kubernetes-namespaces
+- displayName: Secrets Management
+  features:
+  - secrets
+  - secret-encryption
+  - vault-integration
+  name: secrets-management
+- displayName: Templating & GitOps
+  features:
+  - apps
+  - template-versioning
+  - argo-integration
+  - rancher-integration
+  name: templating-gitops
+- displayName: UI Customization
+  features:
+  - custom-branding
+  - advanced-ui-customizations
+  name: ui-customization
+- displayName: vCluster Pro Distro
+  features:
+  - vcp-distro-image
+  - vcp-distro-built-in-coredns
+  - vcp-distro-admission-control
+  - vcp-distro-sync-patches
+  - vcp-distro-embedded-etcd
+  - vcp-distro-isolated-cp
+  - vcp-distro-centralized-admission-control
+  - vcp-distro-generic-sync
+  - vcp-distro-translate-patches
+  - vcp-distro-integrations-kube-virt
+  - vcp-distro-integrations-external-secrets
+  - vcp-distro-integrations-cert-manager
+  - vcp-distro-fips
+  - vcp-distro-external-database
+  - vcp-distro-private-nodes
+  - external-database-rds-iam
+  - connector-external-database
+  - connector-external-database-eks-pod-identity
+  - vcp-distro-sleep-mode
+  - resolve-dns
+  - istio-integration
+  - hybrid-scheduling
+  - sync-namespaces-tohost
+  - private-nodes-vpn
+  - private-nodes-auto-nodes
+  - standalone
+  - netris
+  - kube-vip
+  - vcluster-proxy-resources
+  name: vcluster-pro-distro
+- displayName: Virtual Clusters
+  features:
+  - vclusters
+  - vcluster-sleep-mode
+  - vcluster-host-path-mapper
+  - vcluster-enterprise-plugins
+  - project-quotas
+  - scheduled-snapshots
+  limits:
+  - displayName: Virtual Clusters
+    name: virtual-cluster-instance
+  - displayName: Virtual Clusters (HA)
+    name: virtual-cluster-instance-ha
+  name: virtual-clusters
+- displayName: vNode
+  features:
+  - vnode-runtime
+  name: vnode
