@@ -4,9 +4,11 @@ import (
 	"fmt"
 	"os"
 	"regexp"
+	"sort"
 	"strings"
 	"time"
 
+	"github.com/ghodss/yaml"
 	"github.com/loft-sh/admin-apis/hack/internal/yamlparser"
 	"github.com/loft-sh/admin-apis/pkg/licenseapi"
 )
@@ -117,6 +119,14 @@ func main() {
 		panic(err)
 	}
 
+	modulesContent := struct {
+		Modules []*licenseapi.Module `json:"modules"`
+	}{}
+	err = yamlparser.ParseYAML("../../definitions/modules.yaml", &modulesContent)
+	if err != nil {
+		panic(err)
+	}
+
 	features := yamlContent.Features
 
 	f, err := os.Create("../../pkg/licenseapi/features.go")
@@ -139,6 +149,76 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
+	err = generateModulesYaml(features, modulesContent.Modules)
+	if err != nil {
+		panic(err)
+	}
+}
+
+func generateModulesYaml(features []*licenseapi.Feature, modulesDef []*licenseapi.Module) error {
+	type Module struct {
+		Name        string              `json:"name"`
+		DisplayName string              `json:"displayName"`
+		Features    []string            `json:"features"`
+		Limits      []*licenseapi.Limit `json:"limits,omitempty"`
+	}
+
+	modulesMap := map[string]*Module{}
+
+	// Initialize map with defined modules to ensure they are all included
+	for _, mDef := range modulesDef {
+		modulesMap[mDef.Name] = &Module{
+			Name:        mDef.Name,
+			DisplayName: mDef.DisplayName,
+			Features:    []string{},
+			Limits:      mDef.Limits,
+		}
+	}
+
+	for _, feature := range features {
+		moduleName := feature.Module
+		if moduleName == "" {
+			moduleName = "vcluster-pro-distro"
+		}
+
+		if _, ok := modulesMap[moduleName]; !ok {
+			modulesMap[moduleName] = &Module{
+				Name:        moduleName,
+				DisplayName: hyphenatedToCamelCase(replaceAliasWithFull(moduleName)),
+				Features:    []string{},
+			}
+		}
+		modulesMap[moduleName].Features = append(modulesMap[moduleName].Features, feature.Name)
+	}
+
+	var modules []*Module
+	for _, m := range modulesMap {
+		modules = append(modules, m)
+	}
+
+	sort.Slice(modules, func(i, j int) bool {
+		return modules[i].Name < modules[j].Name
+	})
+
+	out := struct {
+		Modules []*Module `json:"modules"`
+	}{
+		Modules: modules,
+	}
+
+	header := "# This code was generated. Change features.yaml or modules.yaml in the parent directory to add, remove, or edit modules.\n"
+	bytes, err := yaml.Marshal(out)
+	if err != nil {
+		return err
+	}
+
+	err = os.MkdirAll("../../definitions/generated", 0755)
+	if err != nil {
+		return err
+	}
+
+	return os.WriteFile("../../definitions/generated/modules_generated.yaml", append([]byte(header), bytes...), 0644)
 }
 
 func generateFeatureAllowedBeforeMap(features []*licenseapi.Feature) (string, string) {
@@ -200,11 +280,11 @@ func generateAllFeatures(features []*licenseapi.Feature) string {
 		featuresSlice += fmt.Sprintf(`		{
 			DisplayName: "%s",
 			Name:        "%s",
+			Module:      "%s",
 		},
-`, feature.DisplayName, feature.Name)
+`, feature.DisplayName, feature.Name, feature.Module)
 	}
 	return strings.TrimSuffix(featuresSlice, "\n")
-
 }
 
 func hyphenatedToCamelCase(name string) string {
