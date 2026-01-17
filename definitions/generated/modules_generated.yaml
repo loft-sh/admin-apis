@@ -108,6 +108,10 @@ modules:
     name: virtual-cluster-instance
   - displayName: Virtual Clusters (HA)
     name: virtual-cluster-instance-ha
+  - displayName: Attached GPUs
+    name: gpu
+  - displayName: Attached CPUs
+    name: cpu
   name: virtual-clusters
 - displayName: vNode
   features:
