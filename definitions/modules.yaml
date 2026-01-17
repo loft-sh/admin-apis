@@ -6,6 +6,10 @@ modules:
         displayName: "Virtual Clusters"
       - name: virtual-cluster-instance-ha
         displayName: "Virtual Clusters (HA)"
+      - name: gpu
+        displayName: "Attached GPUs"
+      - name: cpu
+        displayName: "Attached CPUs"
   - name: "vcluster-pro-distro"
     displayName: "vCluster Pro Distro"
   - name: "kubernetes-clusters"
