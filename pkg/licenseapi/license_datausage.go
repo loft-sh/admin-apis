@@ -1,5 +1,8 @@
 package licenseapi
 
+// UsageData holds information for an instance deployment of vCluster Platform
+// +k8s:openapi-gen=true
+// +k8s:deepcopy-gen=true
 type UsageData struct {
 	// FeatureUsage contains the usage of features
 	FeatureUsage map[string]FeatureUsage `json:"featureUsage"`
@@ -11,6 +14,10 @@ type UsageData struct {
 	Details UsageDataDetails `json:"details"`
 }
 
+// UsageDataDetails holds detailed information about the nodes and virtual cluster for an instance deployment of
+// vCluster Platform
+// +k8s:openapi-gen=true
+// +k8s:deepcopy-gen=true
 type UsageDataDetails struct {
 	// Nodes contains the details of the nodes
 	Nodes []NodeInfo `json:"nodes"`
@@ -24,12 +31,18 @@ type FeatureUsage struct {
 	Status string
 }
 
+// NodeInfo holds information about a single node
+// +k8s:openapi-gen=true
+// +k8s:deepcopy-gen=true
 type NodeInfo struct {
 	MachineID         string            `json:"machine_id"`
 	CreationTimestamp string            `json:"creation_timestamp"`
 	Capacity          map[string]string `json:"capacity"`
 }
 
+// VirtualClusterInfo holds information about a single virtual cluster
+// +k8s:openapi-gen=true
+// +k8s:deepcopy-gen=true
 type VirtualClusterInfo struct {
 	UID               string   `json:"uid"`
 	Name              string   `json:"name"`
