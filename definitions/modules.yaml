@@ -1,6 +1,22 @@
 modules:
-  - name: "virtual-clusters"
-    displayName: "Virtual Clusters"
+  - name: "backing-stores"
+    displayName: "Backing Stores"
+  - name: "syncing"
+    displayName: "Syncing"
+  - name: "operations"
+    displayName: "Operations"
+  - name: "cost"
+    displayName: "Cost Control"
+  - name: "security"
+    displayName: "Security + Compliance"
+  - name: "bare-metal"
+    displayName: "Bare Metal"
+  - name: "integrations"
+    displayName: "Integrations"
+  - name: "tenancy-models"
+    displayName: "Tenancy Models"
+  - name: "vcluster"
+    displayName: "vCluster"
     limits:
       - name: virtual-cluster-instance
         displayName: "Virtual Clusters"
@@ -10,34 +26,37 @@ modules:
         displayName: "Attached GPUs"
       - name: cpu
         displayName: "Attached CPUs"
+  - name: "platform"
+    displayName: "vCluster Platform"
+    limits:
+      - name: instance
+        displayName: "Instances"
+      - name: "user"
+        displayName: "Users"
+      - name: "connected-cluster"
+        displayName: "Connected Clusters"
+      - name: "space-instance"
+        displayName: "Namespaces"
+  - name: "vnode"
+    displayName: "vNode"
+
+# DEPRECATED
+  - name: "virtual-clusters"
+    displayName: "Virtual Clusters"
   - name: "vcluster-pro-distro"
     displayName: "vCluster Pro Distro"
   - name: "kubernetes-clusters"
     displayName: "Kubernetes Clusters"
-    limits:
-      - name: "connected-cluster"
-        displayName: "Connected Clusters"
   - name: "templating-gitops"
     displayName: "Templating & GitOps"
   - name: "auth-audit-logging"
     displayName: "Authentication & Audit Logging"
-    limits:
-      - name: "user"
-        displayName: "Users"
-  - name: "vnode"
-    displayName: "vNode"
   - name: "deployment-modes"
     displayName: "Deployment Modes"
-    limits:
-      - name: instance
-        displayName: "Instances"
   - name: "secrets-management"
     displayName: "Secrets Management"
   - name: "kubernetes-namespaces"
     displayName: "Kubernetes Namespaces"
-    limits:
-      - name: "space-instance"
-        displayName: "Namespaces"
   - name: "ui-customization"
     displayName: "UI Customization"
   - name: "dev-environments"
