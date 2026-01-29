@@ -26,9 +26,12 @@ type UsageDataDetails struct {
 	VClusters []VirtualClusterInfo `json:"vClusters"`
 }
 
+// FeatureUsage holds information about whether a feature is used and its status
+// +k8s:openapi-gen=true
+// +k8s:deepcopy-gen=true
 type FeatureUsage struct {
-	Used   bool
-	Status string
+	Used   bool   `json:"used"`
+	Status string `json:"status"`
 }
 
 // NodeInfo holds information about a single node
