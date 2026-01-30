@@ -53,12 +53,14 @@ modules:
   features:
   - template-versioning
   - ha-mode
-  - multi-region-mode
   - air-gapped-mode
   - custom-branding
   - advanced-ui-customizations
   - scheduled-snapshots
+  - multi-region-platform
+  - regional-cluster-endpoints
   - disable-platform-db
+  - multi-region-mode
   name: operations
 - displayName: vCluster Platform
   features:
