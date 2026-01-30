@@ -138,11 +138,6 @@ features:
   module: "operations"
   description: "HA Mode allows to run the central platform components in HA mode with leader election to ensure uptime and reduce downtime."
   docsLink: "https://www.vcluster.com/docs/platform/configure/high-availability"
-- name: "multi-region-mode"
-  displayName: "Multi-Region Mode"
-  module: "operations"
-  description: "Multi-Region Mode reduces latency when running the platform in multiple regions and even cloud providers."
-  docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/multi-region-mode"
 - name: "air-gapped-mode"
   displayName: "Air-Gapped Mode"
   module: "operations"
@@ -163,6 +158,17 @@ features:
   module: "operations"
   description: "Auto Snapshots enable automated snapshot creation for virtual clusters."
   docsLink: "https://www.vcluster.com/docs/platform/use-platform/virtual-clusters/key-features/scheduled-snapshot"
+- name: "multi-region-platform"
+  displayName: "Multi-Region Platform"
+  module: "operations"
+  description: "Multi-Region Platform enables deployment of the platform across multiple regions and clusters."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/multi-region-platform"
+- name: "regional-cluster-endpoints"
+  displayName: "Regional Cluster Endpoints"
+  module: "operations"
+  description: "Regional Cluster Endpoints reduce latency when running the platform in multiple regions and even cloud providers."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/regional-cluster-endpoints"
+
 
 # Cost Control
 - name: "project-quotas"
@@ -296,6 +302,12 @@ features:
   module: "templating-gitops"
   description: "Rancher Integration allows vCluster management inside Rancher plus permission/user sync between both systems."
   docsLink: "https://www.vcluster.com/docs/platform/integrations/rancher/configuration"
+- name: "multi-region-mode"
+  displayName: "Multi-Region Mode"
+  module: "operations"
+  description: "Multi-Region Mode reduces latency when running the platform in multiple regions and even cloud providers."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/multi-region-mode"
+
 
   # Removed - DO NOT USE
 - name: "secret-encryption"
