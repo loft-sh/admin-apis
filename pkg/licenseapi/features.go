@@ -56,8 +56,6 @@ const (
 
 	HighAvailabilityMode FeatureName = "ha-mode" // High-Availability Mode
 
-	MultiRegionMode FeatureName = "multi-region-mode" // Multi-Region Mode
-
 	AirGappedMode FeatureName = "air-gapped-mode" // Air-Gapped Mode
 
 	CustomBranding FeatureName = "custom-branding" // Custom Branding
@@ -65,6 +63,10 @@ const (
 	AdvancedUICustomizations FeatureName = "advanced-ui-customizations" // Advanced UI Customizations
 
 	ScheduledSnapshots FeatureName = "scheduled-snapshots" // Auto Snapshots
+
+	MultiRegionPlatform FeatureName = "multi-region-platform" // Multi-Region Platform
+
+	RegionalClusterEndpoints FeatureName = "regional-cluster-endpoints" // Regional Cluster Endpoints
 
 	ProjectQuotas FeatureName = "project-quotas" // Project Quotas
 
@@ -116,6 +118,8 @@ const (
 
 	RancherIntegration FeatureName = "rancher-integration" // Rancher Integration
 
+	MultiRegionMode FeatureName = "multi-region-mode" // Multi-Region Mode
+
 	SecretEncryption FeatureName = "secret-encryption" // Secrets Encryption
 
 	VirtualClusterProDistroAdmissionControl FeatureName = "vcp-distro-admission-control" // Virtual Admission Control
@@ -154,11 +158,12 @@ func GetFeatures() []FeatureName {
 		VirtualClusterProxyResources,
 		TemplateVersioning,
 		HighAvailabilityMode,
-		MultiRegionMode,
 		AirGappedMode,
 		CustomBranding,
 		AdvancedUICustomizations,
 		ScheduledSnapshots,
+		MultiRegionPlatform,
+		RegionalClusterEndpoints,
 		ProjectQuotas,
 		AuditLogging,
 		SSOAuth,
@@ -184,6 +189,7 @@ func GetFeatures() []FeatureName {
 		AutoIngressAuth,
 		VirtualClusterEnterprisePlugins,
 		RancherIntegration,
+		MultiRegionMode,
 		SecretEncryption,
 		VirtualClusterProDistroAdmissionControl,
 		VirtualClusterProDistroIsolatedControlPlane,
@@ -324,11 +330,6 @@ func GetAllFeatures() []*Feature {
 			Module:      "operations",
 		},
 		{
-			DisplayName: "Multi-Region Mode",
-			Name:        "multi-region-mode",
-			Module:      "operations",
-		},
-		{
 			DisplayName: "Air-Gapped Mode",
 			Name:        "air-gapped-mode",
 			Module:      "operations",
@@ -346,6 +347,16 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Auto Snapshots",
 			Name:        "scheduled-snapshots",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Multi-Region Platform",
+			Name:        "multi-region-platform",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Regional Cluster Endpoints",
+			Name:        "regional-cluster-endpoints",
 			Module:      "operations",
 		},
 		{
@@ -472,6 +483,11 @@ func GetAllFeatures() []*Feature {
 			DisplayName: "Rancher Integration",
 			Name:        "rancher-integration",
 			Module:      "templating-gitops",
+		},
+		{
+			DisplayName: "Multi-Region Mode",
+			Name:        "multi-region-mode",
+			Module:      "operations",
 		},
 		{
 			DisplayName: "Secrets Encryption",
