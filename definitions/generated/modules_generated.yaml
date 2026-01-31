@@ -100,6 +100,7 @@ modules:
   - resolve-dns
   - hybrid-scheduling
   - vcluster-proxy-resources
+  - dra-sync
   - vcp-distro-generic-sync
   - vcp-distro-sync-patches
   - vcp-distro-translate-patches
