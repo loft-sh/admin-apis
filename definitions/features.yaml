@@ -126,6 +126,10 @@ features:
   displayName: "vCluster Proxy Resources"
   module: "syncing"
   description: "vCluster Proxy Resources allow workloads inside vClusters to access resources in other vClusters through proxy."
+- name: "dra-syncing"
+  displayName: "DRA syncing"
+  module: "syncing"
+  description: "DRA syncing allows the synchronization of Dynamic Resource Allocation objects."
 
 # Operations
 - name: "template-versioning"
