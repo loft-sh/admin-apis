@@ -16,7 +16,6 @@ gen:
     --go-header-file ./hack/boilerplate.go.txt \
     --input-dirs ./pkg/licenseapi \
     -O zz_generated.deepcopy \
-    -o ./
   go generate ./...
 
 upload-ci-local:
