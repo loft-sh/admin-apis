@@ -52,6 +52,8 @@ const (
 
 	VirtualClusterProxyResources FeatureName = "vcluster-proxy-resources" // vCluster Proxy Resources
 
+	DraSync FeatureName = "dra-sync" // DRA Sync
+
 	TemplateVersioning FeatureName = "template-versioning" // Template Versioning
 
 	HighAvailabilityMode FeatureName = "ha-mode" // High-Availability Mode
@@ -156,6 +158,7 @@ func GetFeatures() []FeatureName {
 		ResolveDns,
 		HybridScheduling,
 		VirtualClusterProxyResources,
+		DraSync,
 		TemplateVersioning,
 		HighAvailabilityMode,
 		AirGappedMode,
@@ -317,6 +320,11 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "vCluster Proxy Resources",
 			Name:        "vcluster-proxy-resources",
+			Module:      "syncing",
+		},
+		{
+			DisplayName: "DRA Sync",
+			Name:        "dra-sync",
 			Module:      "syncing",
 		},
 		{
