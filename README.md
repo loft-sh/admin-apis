@@ -8,7 +8,7 @@ just gen
 ```
 
 ## Add, remove, edit features
-1. Add the features to `definitions/source/features.yaml`.
+1. Add the features to `definitions/features.yaml`.
 2. Run
 ```
 just gen

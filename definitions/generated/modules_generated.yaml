@@ -42,6 +42,10 @@ modules:
   - vcp-distro-integrations-external-secrets
   - vcp-distro-integrations-cert-manager
   - istio-integration
+  - bcm-integration
+  - kubevirt-integration
+  - terraform-integration
+  - clusterapi-integration
   name: integrations
 - displayName: Kubernetes Clusters
   features: []

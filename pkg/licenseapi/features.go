@@ -100,6 +100,14 @@ const (
 
 	IstioIntegration FeatureName = "istio-integration" // Istio Integration
 
+	BcmIntegration FeatureName = "bcm-integration" // Nvidia BCM Integration
+
+	KubevirtIntegration FeatureName = "kubevirt-integration" // KubeVirt Node Provider
+
+	TerraformIntegration FeatureName = "terraform-integration" // Terraform Integration
+
+	ClusterapiIntegration FeatureName = "clusterapi-integration" // ClusterAPI Integration
+
 	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
 
 	VirtualClusterProDistroSyncPatches FeatureName = "vcp-distro-sync-patches" // Sync Patches
@@ -182,6 +190,10 @@ func GetFeatures() []FeatureName {
 		VirtualClusterProDistroIntegrationsExternalSecrets,
 		VirtualClusterProDistroIntegrationsCertManager,
 		IstioIntegration,
+		BcmIntegration,
+		KubevirtIntegration,
+		TerraformIntegration,
+		ClusterapiIntegration,
 		VirtualClusterProDistroGenericSync,
 		VirtualClusterProDistroSyncPatches,
 		VirtualClusterProDistroTranslatePatches,
@@ -440,6 +452,26 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Istio Integration",
 			Name:        "istio-integration",
+			Module:      "integrations",
+		},
+		{
+			DisplayName: "Nvidia BCM Integration",
+			Name:        "bcm-integration",
+			Module:      "integrations",
+		},
+		{
+			DisplayName: "KubeVirt Node Provider",
+			Name:        "kubevirt-integration",
+			Module:      "integrations",
+		},
+		{
+			DisplayName: "Terraform Integration",
+			Name:        "terraform-integration",
+			Module:      "integrations",
+		},
+		{
+			DisplayName: "ClusterAPI Integration",
+			Name:        "clusterapi-integration",
 			Module:      "integrations",
 		},
 		{

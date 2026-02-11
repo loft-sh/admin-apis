@@ -15,7 +15,7 @@ gen:
   go run k8s.io/code-generator/cmd/deepcopy-gen@v0.28.1 \
     --go-header-file ./hack/boilerplate.go.txt \
     --input-dirs ./pkg/licenseapi \
-    -O zz_generated.deepcopy \
+    -O zz_generated.deepcopy
   go generate ./...
 
 upload-ci-local:
