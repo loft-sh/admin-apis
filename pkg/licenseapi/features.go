@@ -100,13 +100,13 @@ const (
 
 	IstioIntegration FeatureName = "istio-integration" // Istio Integration
 
-	BcmIntegration FeatureName = "bcm-integration" // Nvidia BCM Integration
+	AutoNodesBcm FeatureName = "auto-nodes-bcm" // Nvidia BCM Nodes Provider
 
-	KubevirtIntegration FeatureName = "kubevirt-integration" // KubeVirt Node Provider
+	AutoNodesKubevirt FeatureName = "auto-nodes-kubevirt" // KubeVirt Nodes Provider
 
-	TerraformIntegration FeatureName = "terraform-integration" // Terraform Integration
+	AutoNodesTerraform FeatureName = "auto-nodes-terraform" // Terraform Nodes Provider
 
-	ClusterapiIntegration FeatureName = "clusterapi-integration" // ClusterAPI Integration
+	AutoNodesClusterapi FeatureName = "auto-nodes-clusterapi" // ClusterAPI Nodes Provider
 
 	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
 
@@ -190,10 +190,10 @@ func GetFeatures() []FeatureName {
 		VirtualClusterProDistroIntegrationsExternalSecrets,
 		VirtualClusterProDistroIntegrationsCertManager,
 		IstioIntegration,
-		BcmIntegration,
-		KubevirtIntegration,
-		TerraformIntegration,
-		ClusterapiIntegration,
+		AutoNodesBcm,
+		AutoNodesKubevirt,
+		AutoNodesTerraform,
+		AutoNodesClusterapi,
 		VirtualClusterProDistroGenericSync,
 		VirtualClusterProDistroSyncPatches,
 		VirtualClusterProDistroTranslatePatches,
@@ -455,24 +455,24 @@ func GetAllFeatures() []*Feature {
 			Module:      "integrations",
 		},
 		{
-			DisplayName: "Nvidia BCM Integration",
-			Name:        "bcm-integration",
-			Module:      "integrations",
+			DisplayName: "Nvidia BCM Nodes Provider",
+			Name:        "auto-nodes-bcm",
+			Module:      "auto-nodes",
 		},
 		{
-			DisplayName: "KubeVirt Node Provider",
-			Name:        "kubevirt-integration",
-			Module:      "integrations",
+			DisplayName: "KubeVirt Nodes Provider",
+			Name:        "auto-nodes-kubevirt",
+			Module:      "auto-nodes",
 		},
 		{
-			DisplayName: "Terraform Integration",
-			Name:        "terraform-integration",
-			Module:      "integrations",
+			DisplayName: "Terraform Nodes Provider",
+			Name:        "auto-nodes-terraform",
+			Module:      "auto-nodes",
 		},
 		{
-			DisplayName: "ClusterAPI Integration",
-			Name:        "clusterapi-integration",
-			Module:      "integrations",
+			DisplayName: "ClusterAPI Nodes Provider",
+			Name:        "auto-nodes-clusterapi",
+			Module:      "auto-nodes",
 		},
 		{
 			DisplayName: "Generic Sync",
