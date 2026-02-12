@@ -39,6 +39,8 @@ modules:
         displayName: "Namespaces"
   - name: "vnode"
     displayName: "vNode"
+  - name: "auto-nodes"
+    displayName: "Auto Nodes"
 
 # DEPRECATED
   - name: "virtual-clusters"

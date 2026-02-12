@@ -4,6 +4,13 @@ modules:
   features:
   - auto-ingress-authentication
   name: auth-audit-logging
+- displayName: Auto Nodes
+  features:
+  - auto-nodes-bcm
+  - auto-nodes-kubevirt
+  - auto-nodes-terraform
+  - auto-nodes-clusterapi
+  name: auto-nodes
 - displayName: Backing Stores
   features:
   - vcp-distro-embedded-etcd

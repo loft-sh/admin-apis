@@ -259,6 +259,28 @@ features:
   description: "Istio Integration allows administrators to use one Istio controller across all virtual clusters, saving resources and costs."
   docsLink: "https://www.vcluster.com/docs/vcluster/integrations/istio"
 
+# Auto Nodes
+- name: "auto-nodes-bcm"
+  displayName: "Nvidia BCM Node Provider"
+  module: "auto-nodes"
+  description: "Nvidia Base Command Manager Node Provider allows administrators to provision virtual cluster private nodes for NVIDIA SuperPod systems."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/bcm"
+- name: "auto-nodes-kubevirt"
+  displayName: "KubeVirt Node Provider"
+  module: "auto-nodes"
+  description: "KubeVirt Node Provider allows administrators to use KubeVirt to provision virtual machines as virtual cluster private nodes."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/kubevirt"
+- name: "auto-nodes-terraform"
+  displayName: "Terraform Node Provider"
+  module: "auto-nodes"
+  description: "Terraform Node Provider allows administrators to use Terraform to provision private nodes."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/terraform"
+- name: "auto-nodes-clusterapi"
+  displayName: "ClusterAPI Node Provider"
+  module: "auto-nodes"
+  description: "ClusterAPI Node Provider allows administrators to use ClusterAPI to provision virtual cluster private nodes."
+  docsLink: "https://www.vcluster.com/docs/platform/api/resources/nodeprovider#spec-clusterAPI"
+
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"
   displayName: "Generic Sync"

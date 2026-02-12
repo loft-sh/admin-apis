@@ -100,6 +100,14 @@ const (
 
 	IstioIntegration FeatureName = "istio-integration" // Istio Integration
 
+	AutoNodesBcm FeatureName = "auto-nodes-bcm" // Nvidia BCM Node Provider
+
+	AutoNodesKubevirt FeatureName = "auto-nodes-kubevirt" // KubeVirt Node Provider
+
+	AutoNodesTerraform FeatureName = "auto-nodes-terraform" // Terraform Node Provider
+
+	AutoNodesClusterapi FeatureName = "auto-nodes-clusterapi" // ClusterAPI Node Provider
+
 	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
 
 	VirtualClusterProDistroSyncPatches FeatureName = "vcp-distro-sync-patches" // Sync Patches
@@ -182,6 +190,10 @@ func GetFeatures() []FeatureName {
 		VirtualClusterProDistroIntegrationsExternalSecrets,
 		VirtualClusterProDistroIntegrationsCertManager,
 		IstioIntegration,
+		AutoNodesBcm,
+		AutoNodesKubevirt,
+		AutoNodesTerraform,
+		AutoNodesClusterapi,
 		VirtualClusterProDistroGenericSync,
 		VirtualClusterProDistroSyncPatches,
 		VirtualClusterProDistroTranslatePatches,
@@ -441,6 +453,26 @@ func GetAllFeatures() []*Feature {
 			DisplayName: "Istio Integration",
 			Name:        "istio-integration",
 			Module:      "integrations",
+		},
+		{
+			DisplayName: "Nvidia BCM Node Provider",
+			Name:        "auto-nodes-bcm",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "KubeVirt Node Provider",
+			Name:        "auto-nodes-kubevirt",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "Terraform Node Provider",
+			Name:        "auto-nodes-terraform",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "ClusterAPI Node Provider",
+			Name:        "auto-nodes-clusterapi",
+			Module:      "auto-nodes",
 		},
 		{
 			DisplayName: "Generic Sync",
