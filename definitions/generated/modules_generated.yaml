@@ -69,6 +69,7 @@ modules:
   - multi-region-platform
   - regional-cluster-endpoints
   - machine-management
+  - least-privilege-mode
   - disable-platform-db
   - multi-region-mode
   name: operations
