@@ -72,6 +72,8 @@ const (
 
 	MachineManagement FeatureName = "machine-management" // Machine Management
 
+	LeastPrivilegeMode FeatureName = "least-privilege-mode" // Least Privilege Mode
+
 	ProjectQuotas FeatureName = "project-quotas" // Project Quotas
 
 	AuditLogging FeatureName = "audit-logging" // Audit Logging
@@ -182,6 +184,7 @@ func GetFeatures() []FeatureName {
 		MultiRegionPlatform,
 		RegionalClusterEndpoints,
 		MachineManagement,
+		LeastPrivilegeMode,
 		ProjectQuotas,
 		AuditLogging,
 		SSOAuth,
@@ -391,6 +394,11 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Machine Management",
 			Name:        "machine-management",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Least Privilege Mode",
+			Name:        "least-privilege-mode",
 			Module:      "operations",
 		},
 		{

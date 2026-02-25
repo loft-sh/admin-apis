@@ -176,6 +176,11 @@ features:
   displayName: "Machine Management"
   module: "operations"
   description: "Machine Management allows administrators to manage machines with the platform."
+- name: "least-privilege-mode"
+  displayName: "Least Privilege Mode"
+  module: "operations"
+  description: "Least privilege mode dynamically builds the vCluster Platform agent's permission set based on enabled features, ensuring only the minimum required permissions are used."
+  docsLink: "https://www.vcluster.com/docs/platform/configure/platform-configs/overview"
 
 # Cost Control
 - name: "project-quotas"
