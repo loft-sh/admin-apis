@@ -172,7 +172,10 @@ features:
   module: "operations"
   description: "Regional Cluster Endpoints reduce latency when running the platform in multiple regions and even cloud providers."
   docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/regional-cluster-endpoints"
-
+- name: "machine-management"
+  displayName: "Machine Management"
+  module: "operations"
+  description: "Machine Management allows administrators to manage machines with the platform."
 
 # Cost Control
 - name: "project-quotas"
@@ -226,6 +229,10 @@ features:
   displayName: "Kube-vip Integration"
   module: "bare-metal"
   description: "KubeVip announces the control plane endpoint IP on layer 2 on one vCluster control plane instance with automatic failover."
+- name: "metal3"
+  displayName: "Metal3 Integration"
+  module: "bare-metal"
+  description: "Metal3 Integration allows administrators to manage bare metal nodes with Metal3."
 
 # Integrations
 - name: "argo-integration"
@@ -280,6 +287,10 @@ features:
   module: "auto-nodes"
   description: "ClusterAPI Node Provider allows administrators to use ClusterAPI to provision virtual cluster private nodes."
   docsLink: "https://www.vcluster.com/docs/platform/api/resources/nodeprovider#spec-clusterAPI"
+- name: "auto-nodes-metal3"
+  displayName: "Metal3 Node Provider"
+  module: "auto-nodes"
+  description: "Metal3 Node Provider allows administrators to use Metal3 to provision virtual cluster private nodes."
 
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"

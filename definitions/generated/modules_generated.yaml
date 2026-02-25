@@ -10,6 +10,7 @@ modules:
   - auto-nodes-kubevirt
   - auto-nodes-terraform
   - auto-nodes-clusterapi
+  - auto-nodes-metal3
   name: auto-nodes
 - displayName: Backing Stores
   features:
@@ -23,6 +24,7 @@ modules:
   features:
   - netris
   - kube-vip
+  - metal3
   name: bare-metal
 - displayName: Cost Control
   features:
@@ -66,6 +68,7 @@ modules:
   - scheduled-snapshots
   - multi-region-platform
   - regional-cluster-endpoints
+  - machine-management
   - disable-platform-db
   - multi-region-mode
   name: operations

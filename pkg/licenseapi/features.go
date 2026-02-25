@@ -70,6 +70,8 @@ const (
 
 	RegionalClusterEndpoints FeatureName = "regional-cluster-endpoints" // Regional Cluster Endpoints
 
+	MachineManagement FeatureName = "machine-management" // Machine Management
+
 	ProjectQuotas FeatureName = "project-quotas" // Project Quotas
 
 	AuditLogging FeatureName = "audit-logging" // Audit Logging
@@ -87,6 +89,8 @@ const (
 	Netris FeatureName = "netris" // Netris
 
 	KubeVip FeatureName = "kube-vip" // Kube-vip Integration
+
+	Metal3 FeatureName = "metal3" // Metal3 Integration
 
 	ArgoIntegration FeatureName = "argo-integration" // Argo Integration
 
@@ -107,6 +111,8 @@ const (
 	AutoNodesTerraform FeatureName = "auto-nodes-terraform" // Terraform Node Provider
 
 	AutoNodesClusterapi FeatureName = "auto-nodes-clusterapi" // ClusterAPI Node Provider
+
+	AutoNodesMetal3 FeatureName = "auto-nodes-metal3" // Metal3 Node Provider
 
 	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
 
@@ -175,6 +181,7 @@ func GetFeatures() []FeatureName {
 		ScheduledSnapshots,
 		MultiRegionPlatform,
 		RegionalClusterEndpoints,
+		MachineManagement,
 		ProjectQuotas,
 		AuditLogging,
 		SSOAuth,
@@ -184,6 +191,7 @@ func GetFeatures() []FeatureName {
 		VNodeRuntime,
 		Netris,
 		KubeVip,
+		Metal3,
 		ArgoIntegration,
 		VirtualClusterProDistroIntegrationsKubeVirt,
 		VaultIntegration,
@@ -194,6 +202,7 @@ func GetFeatures() []FeatureName {
 		AutoNodesKubevirt,
 		AutoNodesTerraform,
 		AutoNodesClusterapi,
+		AutoNodesMetal3,
 		VirtualClusterProDistroGenericSync,
 		VirtualClusterProDistroSyncPatches,
 		VirtualClusterProDistroTranslatePatches,
@@ -380,6 +389,11 @@ func GetAllFeatures() []*Feature {
 			Module:      "operations",
 		},
 		{
+			DisplayName: "Machine Management",
+			Name:        "machine-management",
+			Module:      "operations",
+		},
+		{
 			DisplayName: "Project Quotas",
 			Name:        "project-quotas",
 			Module:      "cost",
@@ -422,6 +436,11 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Kube-vip Integration",
 			Name:        "kube-vip",
+			Module:      "bare-metal",
+		},
+		{
+			DisplayName: "Metal3 Integration",
+			Name:        "metal3",
 			Module:      "bare-metal",
 		},
 		{
@@ -472,6 +491,11 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "ClusterAPI Node Provider",
 			Name:        "auto-nodes-clusterapi",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "Metal3 Node Provider",
+			Name:        "auto-nodes-metal3",
 			Module:      "auto-nodes",
 		},
 		{
