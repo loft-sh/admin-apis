@@ -130,6 +130,8 @@ const (
 
 	DisablePlatformDB FeatureName = "disable-platform-db" // Disable Platform Database
 
+	PlatformExternalDB FeatureName = "platform-external-db" // Platform External Database
+
 	AutoIngressAuth FeatureName = "auto-ingress-authentication" // Automatic Auth For Ingresses
 
 	VirtualClusterEnterprisePlugins FeatureName = "vcluster-enterprise-plugins" // Enterprise Plugins
@@ -213,6 +215,7 @@ func GetFeatures() []FeatureName {
 		VirtualClusterSleepMode,
 		VirtualClusterProDistroSleepMode,
 		DisablePlatformDB,
+		PlatformExternalDB,
 		AutoIngressAuth,
 		VirtualClusterEnterprisePlugins,
 		RancherIntegration,
@@ -539,6 +542,11 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Disable Platform Database",
 			Name:        "disable-platform-db",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Platform External Database",
+			Name:        "platform-external-db",
 			Module:      "operations",
 		},
 		{

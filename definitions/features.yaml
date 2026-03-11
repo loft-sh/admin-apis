@@ -331,6 +331,11 @@ features:
   module: "operations"
   description: "Disables the installation and management of the platform database by the platform."
   allowBefore: "2025-09-09T00:00:00Z"
+- name: "platform-external-db"
+  displayName: "Platform External Database"
+  module: "operations"
+  description: "Supports HA deployment of the platform with an external database as the backing store."
+  docsLink: "https://www.vcluster.com/docs/platform/configure/external-database"
 
 # Deprecated - DO NOT USE
 - name: "auto-ingress-authentication"
