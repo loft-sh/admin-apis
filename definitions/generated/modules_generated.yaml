@@ -4,6 +4,14 @@ modules:
   features:
   - auto-ingress-authentication
   name: auth-audit-logging
+- displayName: Auto Nodes
+  features:
+  - auto-nodes-bcm
+  - auto-nodes-kubevirt
+  - auto-nodes-terraform
+  - auto-nodes-clusterapi
+  - auto-nodes-metal3
+  name: auto-nodes
 - displayName: Backing Stores
   features:
   - vcp-distro-embedded-etcd
@@ -16,6 +24,7 @@ modules:
   features:
   - netris
   - kube-vip
+  - metal3
   name: bare-metal
 - displayName: Cost Control
   features:
@@ -53,12 +62,16 @@ modules:
   features:
   - template-versioning
   - ha-mode
-  - multi-region-mode
   - air-gapped-mode
   - custom-branding
   - advanced-ui-customizations
   - scheduled-snapshots
+  - multi-region-platform
+  - regional-cluster-endpoints
+  - machine-management
+  - least-privilege-mode
   - disable-platform-db
+  - multi-region-mode
   name: operations
 - displayName: vCluster Platform
   features:
@@ -98,6 +111,7 @@ modules:
   - resolve-dns
   - hybrid-scheduling
   - vcluster-proxy-resources
+  - dra-sync
   - vcp-distro-generic-sync
   - vcp-distro-sync-patches
   - vcp-distro-translate-patches

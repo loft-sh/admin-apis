@@ -126,6 +126,10 @@ features:
   displayName: "vCluster Proxy Resources"
   module: "syncing"
   description: "vCluster Proxy Resources allow workloads inside vClusters to access resources in other vClusters through proxy."
+- name: "dra-sync"
+  displayName: "DRA Sync"
+  module: "syncing"
+  description: "DRA Sync allows the synchronization of Dynamic Resource Allocation objects."
 
 # Operations
 - name: "template-versioning"
@@ -168,7 +172,15 @@ features:
   module: "operations"
   description: "Regional Cluster Endpoints reduce latency when running the platform in multiple regions and even cloud providers."
   docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/regional-cluster-endpoints"
-
+- name: "machine-management"
+  displayName: "Machine Management"
+  module: "operations"
+  description: "Machine Management allows administrators to manage machines with the platform."
+- name: "least-privilege-mode"
+  displayName: "Least Privilege Mode"
+  module: "operations"
+  description: "Least privilege mode dynamically builds the vCluster Platform agent's permission set based on enabled features, ensuring only the minimum required permissions are used."
+  docsLink: "https://www.vcluster.com/docs/platform/configure/platform-configs/overview"
 
 # Cost Control
 - name: "project-quotas"
@@ -222,6 +234,10 @@ features:
   displayName: "Kube-vip Integration"
   module: "bare-metal"
   description: "KubeVip announces the control plane endpoint IP on layer 2 on one vCluster control plane instance with automatic failover."
+- name: "metal3"
+  displayName: "Metal3 Integration"
+  module: "bare-metal"
+  description: "Metal3 Integration allows administrators to manage bare metal nodes with Metal3."
 
 # Integrations
 - name: "argo-integration"
@@ -254,6 +270,32 @@ features:
   module: "integrations"
   description: "Istio Integration allows administrators to use one Istio controller across all virtual clusters, saving resources and costs."
   docsLink: "https://www.vcluster.com/docs/vcluster/integrations/istio"
+
+# Auto Nodes
+- name: "auto-nodes-bcm"
+  displayName: "Nvidia BCM Node Provider"
+  module: "auto-nodes"
+  description: "Nvidia Base Command Manager Node Provider allows administrators to provision virtual cluster private nodes for NVIDIA SuperPod systems."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/bcm"
+- name: "auto-nodes-kubevirt"
+  displayName: "KubeVirt Node Provider"
+  module: "auto-nodes"
+  description: "KubeVirt Node Provider allows administrators to use KubeVirt to provision virtual machines as virtual cluster private nodes."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/kubevirt"
+- name: "auto-nodes-terraform"
+  displayName: "Terraform Node Provider"
+  module: "auto-nodes"
+  description: "Terraform Node Provider allows administrators to use Terraform to provision private nodes."
+  docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/terraform"
+- name: "auto-nodes-clusterapi"
+  displayName: "ClusterAPI Node Provider"
+  module: "auto-nodes"
+  description: "ClusterAPI Node Provider allows administrators to use ClusterAPI to provision virtual cluster private nodes."
+  docsLink: "https://www.vcluster.com/docs/platform/api/resources/nodeprovider#spec-clusterAPI"
+- name: "auto-nodes-metal3"
+  displayName: "Metal3 Node Provider"
+  module: "auto-nodes"
+  description: "Metal3 Node Provider allows administrators to use Metal3 to provision virtual cluster private nodes."
 
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"

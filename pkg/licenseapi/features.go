@@ -52,11 +52,11 @@ const (
 
 	VirtualClusterProxyResources FeatureName = "vcluster-proxy-resources" // vCluster Proxy Resources
 
+	DraSync FeatureName = "dra-sync" // DRA Sync
+
 	TemplateVersioning FeatureName = "template-versioning" // Template Versioning
 
 	HighAvailabilityMode FeatureName = "ha-mode" // High-Availability Mode
-
-	MultiRegionMode FeatureName = "multi-region-mode" // Multi-Region Mode
 
 	AirGappedMode FeatureName = "air-gapped-mode" // Air-Gapped Mode
 
@@ -65,6 +65,14 @@ const (
 	AdvancedUICustomizations FeatureName = "advanced-ui-customizations" // Advanced UI Customizations
 
 	ScheduledSnapshots FeatureName = "scheduled-snapshots" // Auto Snapshots
+
+	MultiRegionPlatform FeatureName = "multi-region-platform" // Multi-Region Platform
+
+	RegionalClusterEndpoints FeatureName = "regional-cluster-endpoints" // Regional Cluster Endpoints
+
+	MachineManagement FeatureName = "machine-management" // Machine Management
+
+	LeastPrivilegeMode FeatureName = "least-privilege-mode" // Least Privilege Mode
 
 	ProjectQuotas FeatureName = "project-quotas" // Project Quotas
 
@@ -84,6 +92,8 @@ const (
 
 	KubeVip FeatureName = "kube-vip" // Kube-vip Integration
 
+	Metal3 FeatureName = "metal3" // Metal3 Integration
+
 	ArgoIntegration FeatureName = "argo-integration" // Argo Integration
 
 	VirtualClusterProDistroIntegrationsKubeVirt FeatureName = "vcp-distro-integrations-kube-virt" // KubeVirt Integration
@@ -95,6 +105,16 @@ const (
 	VirtualClusterProDistroIntegrationsCertManager FeatureName = "vcp-distro-integrations-cert-manager" // Cert Manager Integration
 
 	IstioIntegration FeatureName = "istio-integration" // Istio Integration
+
+	AutoNodesBcm FeatureName = "auto-nodes-bcm" // Nvidia BCM Node Provider
+
+	AutoNodesKubevirt FeatureName = "auto-nodes-kubevirt" // KubeVirt Node Provider
+
+	AutoNodesTerraform FeatureName = "auto-nodes-terraform" // Terraform Node Provider
+
+	AutoNodesClusterapi FeatureName = "auto-nodes-clusterapi" // ClusterAPI Node Provider
+
+	AutoNodesMetal3 FeatureName = "auto-nodes-metal3" // Metal3 Node Provider
 
 	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
 
@@ -115,6 +135,8 @@ const (
 	VirtualClusterEnterprisePlugins FeatureName = "vcluster-enterprise-plugins" // Enterprise Plugins
 
 	RancherIntegration FeatureName = "rancher-integration" // Rancher Integration
+
+	MultiRegionMode FeatureName = "multi-region-mode" // Multi-Region Mode
 
 	SecretEncryption FeatureName = "secret-encryption" // Secrets Encryption
 
@@ -152,13 +174,17 @@ func GetFeatures() []FeatureName {
 		ResolveDns,
 		HybridScheduling,
 		VirtualClusterProxyResources,
+		DraSync,
 		TemplateVersioning,
 		HighAvailabilityMode,
-		MultiRegionMode,
 		AirGappedMode,
 		CustomBranding,
 		AdvancedUICustomizations,
 		ScheduledSnapshots,
+		MultiRegionPlatform,
+		RegionalClusterEndpoints,
+		MachineManagement,
+		LeastPrivilegeMode,
 		ProjectQuotas,
 		AuditLogging,
 		SSOAuth,
@@ -168,12 +194,18 @@ func GetFeatures() []FeatureName {
 		VNodeRuntime,
 		Netris,
 		KubeVip,
+		Metal3,
 		ArgoIntegration,
 		VirtualClusterProDistroIntegrationsKubeVirt,
 		VaultIntegration,
 		VirtualClusterProDistroIntegrationsExternalSecrets,
 		VirtualClusterProDistroIntegrationsCertManager,
 		IstioIntegration,
+		AutoNodesBcm,
+		AutoNodesKubevirt,
+		AutoNodesTerraform,
+		AutoNodesClusterapi,
+		AutoNodesMetal3,
 		VirtualClusterProDistroGenericSync,
 		VirtualClusterProDistroSyncPatches,
 		VirtualClusterProDistroTranslatePatches,
@@ -184,6 +216,7 @@ func GetFeatures() []FeatureName {
 		AutoIngressAuth,
 		VirtualClusterEnterprisePlugins,
 		RancherIntegration,
+		MultiRegionMode,
 		SecretEncryption,
 		VirtualClusterProDistroAdmissionControl,
 		VirtualClusterProDistroIsolatedControlPlane,
@@ -314,6 +347,11 @@ func GetAllFeatures() []*Feature {
 			Module:      "syncing",
 		},
 		{
+			DisplayName: "DRA Sync",
+			Name:        "dra-sync",
+			Module:      "syncing",
+		},
+		{
 			DisplayName: "Template Versioning",
 			Name:        "template-versioning",
 			Module:      "operations",
@@ -321,11 +359,6 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "High-Availability Mode",
 			Name:        "ha-mode",
-			Module:      "operations",
-		},
-		{
-			DisplayName: "Multi-Region Mode",
-			Name:        "multi-region-mode",
 			Module:      "operations",
 		},
 		{
@@ -346,6 +379,26 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Auto Snapshots",
 			Name:        "scheduled-snapshots",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Multi-Region Platform",
+			Name:        "multi-region-platform",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Regional Cluster Endpoints",
+			Name:        "regional-cluster-endpoints",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Machine Management",
+			Name:        "machine-management",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Least Privilege Mode",
+			Name:        "least-privilege-mode",
 			Module:      "operations",
 		},
 		{
@@ -394,6 +447,11 @@ func GetAllFeatures() []*Feature {
 			Module:      "bare-metal",
 		},
 		{
+			DisplayName: "Metal3 Integration",
+			Name:        "metal3",
+			Module:      "bare-metal",
+		},
+		{
 			DisplayName: "Argo Integration",
 			Name:        "argo-integration",
 			Module:      "integrations",
@@ -422,6 +480,31 @@ func GetAllFeatures() []*Feature {
 			DisplayName: "Istio Integration",
 			Name:        "istio-integration",
 			Module:      "integrations",
+		},
+		{
+			DisplayName: "Nvidia BCM Node Provider",
+			Name:        "auto-nodes-bcm",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "KubeVirt Node Provider",
+			Name:        "auto-nodes-kubevirt",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "Terraform Node Provider",
+			Name:        "auto-nodes-terraform",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "ClusterAPI Node Provider",
+			Name:        "auto-nodes-clusterapi",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "Metal3 Node Provider",
+			Name:        "auto-nodes-metal3",
+			Module:      "auto-nodes",
 		},
 		{
 			DisplayName: "Generic Sync",
@@ -472,6 +555,11 @@ func GetAllFeatures() []*Feature {
 			DisplayName: "Rancher Integration",
 			Name:        "rancher-integration",
 			Module:      "templating-gitops",
+		},
+		{
+			DisplayName: "Multi-Region Mode",
+			Name:        "multi-region-mode",
+			Module:      "operations",
 		},
 		{
 			DisplayName: "Secrets Encryption",
