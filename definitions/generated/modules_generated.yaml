@@ -71,6 +71,7 @@ modules:
   - machine-management
   - least-privilege-mode
   - disable-platform-db
+  - platform-external-db
   - multi-region-mode
   name: operations
 - displayName: vCluster Platform
