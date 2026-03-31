@@ -335,7 +335,7 @@ features:
   displayName: "Platform External Database"
   module: "operations"
   description: "Supports HA deployment of the platform with an external database as the backing store."
-  docsLink: "https://www.vcluster.com/docs/platform/configure/external-database"
+  docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/external-database"
 
 # Deprecated - DO NOT USE
 - name: "auto-ingress-authentication"
