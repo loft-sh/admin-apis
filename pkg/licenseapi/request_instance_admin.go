@@ -1,6 +1,12 @@
 package licenseapi
 
-import "net/http"
+import (
+	"errors"
+	"net/http"
+)
+
+// ErrMissingStripeSubscriptionID is returned when InstancePatchInput.StripeSubscriptionID is empty.
+var ErrMissingStripeSubscriptionID = errors.New("stripeSubscriptionId is required")
 
 // InstancePatchMethod is the HTTP method for updating instance fields.
 const InstancePatchMethod = http.MethodPatch
@@ -15,6 +21,14 @@ const InstanceGetMethod = http.MethodGet
 type InstancePatchInput struct {
 	// StripeSubscriptionID is the Stripe subscription to associate with this instance.
 	StripeSubscriptionID string `json:"stripeSubscriptionId,omitempty"`
+}
+
+// Validate checks that all required fields in InstancePatchInput are set.
+func (i InstancePatchInput) Validate() error {
+	if i.StripeSubscriptionID == "" {
+		return ErrMissingStripeSubscriptionID
+	}
+	return nil
 }
 
 // InstanceGetOutput is the response body for retrieving an instance by ID.
