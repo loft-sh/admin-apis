@@ -25,6 +25,14 @@ var Limits = map[ResourceName]*Limit{
 		DisplayName: "Instances",
 		Name:        string(InstanceLimit),
 	},
+	CpuLimit: {
+		DisplayName: "CPUs",
+		Name:        string(CpuLimit),
+	},
+	GpuLimit: {
+		DisplayName: "GPUs",
+		Name:        string(GpuLimit),
+	},
 }
 
 // Limit defines a limit set in the license

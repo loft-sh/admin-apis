@@ -83,6 +83,8 @@ const (
 	DevPodWorkspaceInstanceLimit  ResourceName = "devpod-workspace-instance"
 	UserLimit                     ResourceName = "user"
 	InstanceLimit                 ResourceName = "instance"
+	CpuLimit                      ResourceName = "cpu"
+	GpuLimit                      ResourceName = "gpu"
 )
 
 // Resource Status
