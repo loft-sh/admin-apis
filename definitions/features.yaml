@@ -300,6 +300,7 @@ features:
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"
   displayName: "Generic Sync"
+  hideInUI: true
   module: "syncing"
   description: "Custom Resources (CRDs) sync ensures that user-defined Kubernetes resources and their definitions are properly synchronized between the host and virtual clusters for seamless operation."
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/experimental/#experimental-genericSync"
@@ -341,16 +342,19 @@ features:
 - name: "auto-ingress-authentication"
   displayName: "Automatic Auth For Ingresses"
   module: "auth-audit-logging"
+  hideInUI: true
 - name: "vcluster-enterprise-plugins"
   displayName: "Enterprise Plugins"
   module: "virtual-clusters"
 - name: "rancher-integration"
   displayName: "Rancher Integration"
   module: "templating-gitops"
+  hideInUI: true
   description: "Rancher Integration allows vCluster management inside Rancher plus permission/user sync between both systems."
   docsLink: "https://www.vcluster.com/docs/platform/integrations/rancher/configuration"
 - name: "multi-region-mode"
   displayName: "Multi-Region Mode"
+  hideInUI: true
   module: "operations"
   description: "Multi-Region Mode reduces latency when running the platform in multiple regions and even cloud providers."
   docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/advanced/multi-region-mode"
@@ -366,9 +370,11 @@ features:
 - name: "vcp-distro-isolated-cp"
   displayName: "Isolated Control Plane"
   module: "vcluster-pro-distro"
+  hideInUI: true
   description: "Isolated Control Plane optimizes resource allocation and security by splitting up the control plane and worker vCluster into separate clusters. "
   docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/experimental/isolated-control-plane"
 - name: "devpod"
   displayName: "Dev Environment Management"
   module: "dev-environments"
+  hideInUI: true
   preview: true
