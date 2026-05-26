@@ -1881,7 +1881,7 @@ func schema_loft_sh_admin_apis_pkg_licenseapi_UsageDataDetails(ref common.Refere
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "UsageDataDetails holds detailed information about the nodes and virtual cluster for an instance deployment of vCluster Platform",
+				Description: "UsageDataDetails holds detailed information about the nodes and tenant cluster for an instance deployment of vCluster Platform",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"nodes": {
@@ -1900,7 +1900,7 @@ func schema_loft_sh_admin_apis_pkg_licenseapi_UsageDataDetails(ref common.Refere
 					},
 					"vClusters": {
 						SchemaProps: spec.SchemaProps{
-							Description: "VClusters contains the details of the virtual clusters",
+							Description: "VClusters contains the details of the tenant clusters",
 							Type:        []string{"array"},
 							Items: &spec.SchemaOrArray{
 								Schema: &spec.Schema{
@@ -1925,7 +1925,7 @@ func schema_loft_sh_admin_apis_pkg_licenseapi_VirtualClusterInfo(ref common.Refe
 	return common.OpenAPIDefinition{
 		Schema: spec.Schema{
 			SchemaProps: spec.SchemaProps{
-				Description: "VirtualClusterInfo holds information about a single virtual cluster",
+				Description: "VirtualClusterInfo holds information about a single tenant cluster",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
 					"uid": {
