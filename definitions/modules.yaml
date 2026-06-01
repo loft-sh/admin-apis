@@ -11,6 +11,8 @@ modules:
     displayName: "Security + Compliance"
   - name: "bare-metal"
     displayName: "Bare Metal"
+  - name: "vm-management"
+    displayName: "VM Management with KubeVirt"
   - name: "integrations"
     displayName: "Integrations"
   - name: "tenancy-models"

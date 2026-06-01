@@ -155,6 +155,10 @@ modules:
   features:
   - vcluster-enterprise-plugins
   name: virtual-clusters
+- displayName: VM Management with KubeVirt
+  features:
+  - vm-management
+  name: vm-management
 - displayName: vNode
   features:
   - vnode-runtime
