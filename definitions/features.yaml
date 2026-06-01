@@ -288,6 +288,12 @@ features:
   ui:
     description: "Metal3 Integration allows administrators to manage bare metal nodes with Metal3."
 
+# VM Management
+- name: "vm-management"
+  displayName: "VM Management with KubeVirt"
+  module: "vm-management"
+  description: "VM Management with KubeVirt allows administrators to manage virtual machines with KubeVirt."
+
 # Integrations
 - name: "argo-integration"
   displayName: "Argo Integration"
