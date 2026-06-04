@@ -1,0 +1,55 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    "helpers:pinGitHubActionDigests"
+  ],
+  "baseBranchPatterns": ["main"],
+  "labels": ["dependencies"],
+  "prHourlyLimit": 5,
+  "prConcurrentLimit": 10,
+  "minimumReleaseAge": "3 days",
+  "schedule": ["before 6am on monday"],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "labels": ["security"]
+  },
+  "postUpdateOptions": ["gomodTidy"],
+  "packageRules": [
+    {
+      "description": "Group GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "groupName": "github-actions"
+    },
+    {
+      "description": "Group Go patch updates to reduce PR noise; majors and minors stay individual for review",
+      "matchManagers": ["gomod"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "go-patch-updates"
+    },
+    {
+      "description": "Group Kubernetes Go modules so the k8s.io/sigs.k8s.io ecosystem moves in lockstep (covers go.mod deps and the pinned code-generator/kube-openapi tools in the Justfile)",
+      "matchPackageNames": ["k8s.io/{/,}**", "sigs.k8s.io/{/,}**"],
+      "groupName": "k8s-go-deps"
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "deepcopy-gen (k8s.io/code-generator) tool version in the Justfile gen recipe",
+      "managerFilePatterns": ["/^Justfile$/"],
+      "matchStrings": ["go run k8s\\.io/code-generator/cmd/deepcopy-gen@(?<currentValue>v[\\d.]+)"],
+      "depNameTemplate": "k8s.io/code-generator",
+      "datasourceTemplate": "go"
+    },
+    {
+      "customType": "regex",
+      "description": "openapi-gen (k8s.io/kube-openapi) tool version in the Justfile gen recipe",
+      "managerFilePatterns": ["/^Justfile$/"],
+      "matchStrings": ["go run k8s\\.io/kube-openapi/cmd/openapi-gen@(?<currentValue>v[\\d.]+-[\\d]+-[0-9a-f]+)"],
+      "depNameTemplate": "k8s.io/kube-openapi",
+      "datasourceTemplate": "go"
+    }
+  ]
+}
