@@ -62,6 +62,7 @@ features:
   module: "vcluster"
   ui:
     description: "vCluster Pro provides security hardened images and advanced features for virtual clusters like integrated CoreDNS and Central HostPath Mapper."
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/control-plane/components/distro"
 - name: "vcp-distro-built-in-coredns"
   displayName: "Built-In CoreDNS"
   module: "vcluster"
@@ -143,6 +144,8 @@ features:
 - name: "resolve-dns"
   displayName: "Resolve DNS"
   module: "syncing"
+  ui:
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/networking/resolve-dns"
 - name: "hybrid-scheduling"
   displayName: "Hybrid Scheduling"
   module: "syncing"
@@ -154,11 +157,13 @@ features:
   module: "syncing"
   ui:
     description: "vCluster Proxy Resources allow workloads inside vClusters to access resources in other vClusters through proxy."
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/experimental/proxy"
 - name: "dra-sync"
   displayName: "DRA Sync"
   module: "syncing"
   ui:
     description: "DRA Sync allows the synchronization of Dynamic Resource Allocation objects."
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/sync/from-host/device-classes"
 
 # Operations
 - name: "template-versioning"
@@ -214,6 +219,7 @@ features:
   module: "operations"
   ui:
     description: "Machine Management allows administrators to manage machines with the platform."
+    docsLink: "https://www.vcluster.com/docs/platform/use-platform/machines/overview"
 - name: "least-privilege-mode"
   displayName: "Least Privilege Mode"
   module: "operations"
@@ -277,22 +283,27 @@ features:
   module: "bare-metal"
   ui:
     description: "Netris enables dynamic network automation for vCluster instances with private nodes"
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/integrations/netris"
 - name: "kube-vip"
   displayName: "Kube-vip Integration"
   module: "bare-metal"
   ui:
     description: "KubeVip announces the control plane endpoint IP on layer 2 on one vCluster control plane instance with automatic failover."
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/control-plane/other/advanced/kube-vip"
 - name: "metal3"
   displayName: "Metal3 Integration"
   module: "bare-metal"
   ui:
     description: "Metal3 Integration allows administrators to manage bare metal nodes with Metal3."
+    docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/metal3"
 
 # VM Management
 - name: "vm-management"
   displayName: "VM Management with KubeVirt"
   module: "vm-management"
   description: "VM Management with KubeVirt allows administrators to manage virtual machines with KubeVirt."
+  ui:
+    docsLink: "https://www.vcluster.com/docs/platform/administer/virtual-machines/overview"
 
 # Integrations
 - name: "argo-integration"
@@ -362,6 +373,7 @@ features:
   module: "auto-nodes"
   ui:
     description: "Metal3 Node Provider allows administrators to use Metal3 to provision virtual cluster private nodes."
+    docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/metal3"
 
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"
@@ -376,11 +388,13 @@ features:
   module: "syncing"
   ui:
     description: "Sync Patches provide an option to alter the vCluster sync process by defining patches applied to objects during sync."
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/sync/to-host/advanced/custom-resources#patches"
 - name: "vcp-distro-translate-patches"
   displayName: "Translate Patches"
   module: "syncing"
   ui:
     description: "Translate Patches enable administrators to precisely control resource definitions in the virtual and the host cluster through mutation during the syncing process."
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/sync/to-host/advanced/custom-resources#patches"
 - name: "namespace-sleep-mode"
   displayName: "Sleep Mode for Namespaces"
   module: "cost"
@@ -405,6 +419,7 @@ features:
   allowBefore: "2025-09-09T00:00:00Z"
   ui:
     description: "Disables the installation and management of the platform database by the platform."
+    docsLink: "https://www.vcluster.com/docs/platform/maintenance/platform-database/database"
 - name: "platform-external-db"
   displayName: "Platform External Database"
   module: "operations"
