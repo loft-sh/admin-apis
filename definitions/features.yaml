@@ -75,6 +75,12 @@ features:
   ui:
     description: "Private Nodes VPN connects private nodes to the virtual cluster control plane over a secure VPN network"
     docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/private-nodes"
+- name: "private-nodes-node-profiles"
+  displayName: "Private Nodes Node Profiles"
+  module: "vcluster"
+  ui:
+    description: "Private Nodes Node Profiles provides a named, reusable set of labels, annotations, and taints that can be applied to a set of nodes."
+    docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/private-nodes"
 
 # Tenancy Models
 - name: "vcp-distro-private-nodes"
