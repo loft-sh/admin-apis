@@ -120,7 +120,7 @@ const (
 
 	AutoNodesMetal3 FeatureName = "auto-nodes-metal3" // Metal3 Node Provider
 
-	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
+	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Custom Resource Syncing
 
 	VirtualClusterProDistroSyncPatches FeatureName = "vcp-distro-sync-patches" // Sync Patches
 
@@ -526,7 +526,7 @@ func GetAllFeatures() []*Feature {
 			Module:      "auto-nodes",
 		},
 		{
-			DisplayName: "Generic Sync",
+			DisplayName: "Custom Resource Syncing",
 			Name:        "vcp-distro-generic-sync",
 			Module:      "syncing",
 		},

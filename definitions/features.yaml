@@ -383,7 +383,7 @@ features:
 
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"
-  displayName: "Generic Sync"
+  displayName: "Custom Resource Syncing"
   module: "syncing"
   ui:
     hidden: true
