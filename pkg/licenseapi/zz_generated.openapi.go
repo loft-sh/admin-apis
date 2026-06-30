@@ -1353,7 +1353,7 @@ func schema_loft_sh_admin_apis_pkg_licenseapi_NodeGPUInfo(ref common.ReferenceCa
 					},
 					"physical": {
 						SchemaProps: spec.SchemaProps{
-							Description: "Physical is the number of physical accelerators of this type on the node after normalizing sharing schemes such as time-slicing and MIG. Until normalization is implemented it equals Allocatable. This is the value intended for metering.",
+							Description: "Physical is the number of physical accelerators of this type on the node after normalizing sharing schemes such as time-slicing and MIG. It equals Allocatable when those schemes are not normalized. This is the value intended for metering.",
 							Default:     0,
 							Type:        []string{"integer"},
 							Format:      "int64",

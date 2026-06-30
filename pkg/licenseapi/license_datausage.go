@@ -77,8 +77,8 @@ type NodeGPUInfo struct {
 	Allocatable int64 `json:"allocatable"`
 
 	// Physical is the number of physical accelerators of this type on the node after
-	// normalizing sharing schemes such as time-slicing and MIG. Until normalization is
-	// implemented it equals Allocatable. This is the value intended for metering.
+	// normalizing sharing schemes such as time-slicing and MIG. It equals Allocatable when
+	// those schemes are not normalized. This is the value intended for metering.
 	Physical int64 `json:"physical"`
 }
 
