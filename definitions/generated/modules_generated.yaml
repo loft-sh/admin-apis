@@ -11,6 +11,7 @@ modules:
   - auto-nodes-terraform
   - auto-nodes-clusterapi
   - auto-nodes-metal3
+  - auto-nodes-nico
   name: auto-nodes
 - displayName: Backing Stores
   features:
