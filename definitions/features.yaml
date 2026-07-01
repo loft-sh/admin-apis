@@ -28,7 +28,7 @@ features:
   displayName: "Fleet Observability"
   module: "platform"
   ui:
-    description: "Monitor all your fleets at a glance, then drill down into individual tenant cluster health with built-in dashboards."
+    description: "Monitor all your clusters at a glance, then drill down into individual tenant cluster health with built-in dashboards."
     docsLink: ""
 - name: "secrets"
   displayName: "Secrets Sync"
