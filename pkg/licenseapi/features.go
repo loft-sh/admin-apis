@@ -10,7 +10,7 @@ const (
 
 	ConnectedClusters FeatureName = "connected-clusters" // Connected Clusters
 
-	Observability FeatureName = "observability" // Observability
+	FleetObservability FeatureName = "fleet-observability" // Fleet Observability
 
 	Secrets FeatureName = "secrets" // Secrets Sync
 
@@ -163,7 +163,7 @@ func GetFeatures() []FeatureName {
 		ClusterAccess,
 		ClusterRoles,
 		ConnectedClusters,
-		Observability,
+		FleetObservability,
 		Secrets,
 		Apps,
 		Namespaces,
@@ -257,8 +257,8 @@ func GetAllFeatures() []*Feature {
 			Module:      "platform",
 		},
 		{
-			DisplayName: "Observability",
-			Name:        "observability",
+			DisplayName: "Fleet Observability",
+			Name:        "fleet-observability",
 			Module:      "platform",
 		},
 		{

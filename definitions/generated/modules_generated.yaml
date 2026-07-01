@@ -80,7 +80,7 @@ modules:
   - cluster-access
   - cluster-roles
   - connected-clusters
-  - observability
+  - fleet-observability
   - secrets
   - apps
   - namespaces
