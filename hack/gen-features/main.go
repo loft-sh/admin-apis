@@ -105,6 +105,7 @@ var (
 		"coredns":        "CoreDNS",
 		"cp":             "ControlPlane",
 		"db":             "DB",
+		"nico":           "NICo",
 	}
 	reg = regexp.MustCompile(`^([a-zA-Z]+)|(-[a-zA-Z]+)`)
 )

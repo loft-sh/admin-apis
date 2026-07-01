@@ -120,6 +120,8 @@ const (
 
 	AutoNodesMetal3 FeatureName = "auto-nodes-metal3" // Metal3 Node Provider
 
+	AutoNodesNICo FeatureName = "auto-nodes-nico" // NICo Node Provider
+
 	VirtualClusterProDistroGenericSync FeatureName = "vcp-distro-generic-sync" // Generic Sync
 
 	VirtualClusterProDistroSyncPatches FeatureName = "vcp-distro-sync-patches" // Sync Patches
@@ -214,6 +216,7 @@ func GetFeatures() []FeatureName {
 		AutoNodesTerraform,
 		AutoNodesClusterapi,
 		AutoNodesMetal3,
+		AutoNodesNICo,
 		VirtualClusterProDistroGenericSync,
 		VirtualClusterProDistroSyncPatches,
 		VirtualClusterProDistroTranslatePatches,
@@ -523,6 +526,11 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Metal3 Node Provider",
 			Name:        "auto-nodes-metal3",
+			Module:      "auto-nodes",
+		},
+		{
+			DisplayName: "NICo Node Provider",
+			Name:        "auto-nodes-nico",
 			Module:      "auto-nodes",
 		},
 		{

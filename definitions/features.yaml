@@ -380,6 +380,12 @@ features:
   ui:
     description: "Metal3 Node Provider allows administrators to use Metal3 to provision virtual cluster private nodes."
     docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/metal3"
+- name: "auto-nodes-nico"
+  displayName: "NICo Node Provider"
+  module: "auto-nodes"
+  ui:
+    description: "NICo Node Provider allows administrators to use the NVIDIA Infrastructure Controller (NICo) to provision virtual cluster private nodes."
+    docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/nico"
 
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"
