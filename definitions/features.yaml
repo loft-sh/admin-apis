@@ -24,6 +24,12 @@ features:
   ui:
     description: "Connected Clusters are centrally managed kubernetes clusters to run virtual clusters and namespaces on.  "
     docsLink: "https://www.vcluster.com/docs/platform/administer/clusters/connect-cluster"
+- name: "observability"
+  displayName: "Observability"
+  module: "platform"
+  ui:
+    description: "Monitor all your clusters at a glance, then drill down into individual tenant cluster health with built-in dashboards."
+    docsLink: ""
 - name: "secrets"
   displayName: "Secrets Sync"
   module: "platform"
