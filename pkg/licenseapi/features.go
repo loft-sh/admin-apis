@@ -28,7 +28,7 @@ const (
 
 	PrivateNodesVpn FeatureName = "private-nodes-vpn" // Private Nodes VPN
 
-	PrivateNodesNodeProfiles FeatureName = "private-nodes-node-profiles" // Private Nodes Node Profiles
+	NodeProfiles FeatureName = "node-profiles" // Node Profiles
 
 	VirtualClusterProDistroPrivateNodes FeatureName = "vcp-distro-private-nodes" // Private Nodes
 
@@ -172,7 +172,7 @@ func GetFeatures() []FeatureName {
 		VirtualClusterProDistroImage,
 		VirtualClusterProDistroBuiltInCoreDNS,
 		PrivateNodesVpn,
-		PrivateNodesNodeProfiles,
+		NodeProfiles,
 		VirtualClusterProDistroPrivateNodes,
 		PrivateNodesAutoNodes,
 		Standalone,
@@ -302,8 +302,8 @@ func GetAllFeatures() []*Feature {
 			Module:      "vcluster",
 		},
 		{
-			DisplayName: "Private Nodes Node Profiles",
-			Name:        "private-nodes-node-profiles",
+			DisplayName: "Node Profiles",
+			Name:        "node-profiles",
 			Module:      "vcluster",
 		},
 		{
