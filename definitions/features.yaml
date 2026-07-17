@@ -29,7 +29,7 @@ features:
   module: "platform"
   ui:
     description: "Monitor all your clusters at a glance, then drill down into individual tenant cluster health with built-in dashboards."
-    docsLink: ""
+    docsLink: "https://www.vcluster.com/docs/platform/maintenance/observability/overview"
 - name: "secrets"
   displayName: "Secrets Sync"
   module: "platform"
