@@ -85,6 +85,7 @@ modules:
   - apps
   - namespaces
   - oidc-provider
+  - multi-tenancy
   limits:
   - displayName: Instances
     name: instance

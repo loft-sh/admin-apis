@@ -1,7 +1,7 @@
 # PLEASE NOTE: This file is currently additionally statically bundled with assets used in the platform UI.
 # - Information that is exclusively consumed in this way is nested under the `ui` key.
 # - Static bundling happens during code generation in loft-enterprise; the resulting bundle gets deployed to static.loft.sh
-#   via GitHub Actions in loft-enterprise and https://github.com/loft-sh/static.loft.sh 
+#   via GitHub Actions in loft-enterprise and https://github.com/loft-sh/static.loft.sh
 
 features:
 
@@ -55,6 +55,12 @@ features:
   ui:
     description: "OIDC Provider lets the platform act as a identity provider for other services, unifying identity and permissions across a variety of tools."
     docsLink: "https://www.vcluster.com/docs/platform/how-to/oidc-provider"
+- name: "multi-tenancy"
+  displayName: "Multi-Tenancy"
+  module: "platform"
+  ui:
+    description: "Multi-Tenancy lets administrators create and manage multiple tenants within a single platform. Each tenant has a unique platform experience and can manage their own users, teams and projects."
+    docsLink: "https://www.vcluster.com/docs/platform/use-platform/multi-tenancy"
 
 # vCluster
 - name: "vclusters"
