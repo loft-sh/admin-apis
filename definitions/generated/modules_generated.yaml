@@ -95,6 +95,8 @@ modules:
     name: connected-cluster
   - displayName: Namespaces
     name: space-instance
+  - displayName: Tenants
+    name: tenant
   name: platform
 - displayName: Secrets Management
   features:
