@@ -39,6 +39,8 @@ modules:
         displayName: "Connected Clusters"
       - name: "space-instance"
         displayName: "Namespaces"
+      - name: "tenant"
+        displayName: "Tenants"
   - name: "vnode"
     displayName: "vNode"
   - name: "auto-nodes"
