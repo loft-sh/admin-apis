@@ -398,6 +398,12 @@ features:
   ui:
     description: "NICo Node Provider allows administrators to use the NVIDIA Infrastructure Controller (NICo) to provision virtual cluster private nodes."
     docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/nico"
+- name: "auto-nodes-external-platform"
+  displayName: "External Platform Node Provider"
+  module: "auto-nodes"
+  ui:
+    description: "External Platform Node Provider allows a tenant to provision tenant cluster private nodes from a Metal3 Node Provider on another vCluster Platform."
+    docsLink: "https://www.vcluster.com/docs/platform/api/resources/nodeprovider#spec-platform"
 
 # NEEDS FIXING
 - name: "vcp-distro-generic-sync"

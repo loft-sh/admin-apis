@@ -12,6 +12,7 @@ modules:
   - auto-nodes-clusterapi
   - auto-nodes-metal3
   - auto-nodes-nico
+  - auto-nodes-external-platform
   name: auto-nodes
 - displayName: Backing Stores
   features:
