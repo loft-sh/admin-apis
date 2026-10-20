@@ -32,6 +32,16 @@
       "description": "Group Kubernetes Go modules so the k8s.io/sigs.k8s.io ecosystem moves in lockstep (covers go.mod deps and the pinned code-generator/kube-openapi tools in the Justfile)",
       "matchPackageNames": ["k8s.io/{/,}**", "sigs.k8s.io/{/,}**"],
       "groupName": "k8s-go-deps"
+    },
+    {
+      "description": "Keep internal actions on rolling tags",
+      "matchManagers": [
+        "github-actions"
+      ],
+      "matchPackageNames": [
+        "loft-sh/**"
+      ],
+      "pinDigests": false
     }
   ],
   "customManagers": [
