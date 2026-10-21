@@ -78,6 +78,8 @@ const (
 
 	MachineManagement FeatureName = "machine-management" // Machine Management
 
+	TenantStorage FeatureName = "tenant-storage" // Tenant Storage
+
 	LeastPrivilegeMode FeatureName = "least-privilege-mode" // Least Privilege Mode
 
 	ProjectQuotas FeatureName = "project-quotas" // Project Quotas
@@ -201,6 +203,7 @@ func GetFeatures() []FeatureName {
 		MultiRegionPlatform,
 		RegionalClusterEndpoints,
 		MachineManagement,
+		TenantStorage,
 		LeastPrivilegeMode,
 		ProjectQuotas,
 		AuditLogging,
@@ -430,6 +433,11 @@ func GetAllFeatures() []*Feature {
 		{
 			DisplayName: "Machine Management",
 			Name:        "machine-management",
+			Module:      "operations",
+		},
+		{
+			DisplayName: "Tenant Storage",
+			Name:        "tenant-storage",
 			Module:      "operations",
 		},
 		{
