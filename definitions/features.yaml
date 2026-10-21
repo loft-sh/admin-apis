@@ -238,6 +238,11 @@ features:
   ui:
     description: "Machine Management allows administrators to manage machines with the platform."
     docsLink: "https://www.vcluster.com/docs/platform/use-platform/machines/overview"
+- name: "tenant-storage"
+  displayName: "Tenant Storage"
+  module: "operations"
+  ui:
+    description: "Tenant Storage allows administrators to give each tenant isolated storage, provisioned and attached by the platform."
 - name: "least-privilege-mode"
   displayName: "Least Privilege Mode"
   module: "operations"

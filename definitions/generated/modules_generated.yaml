@@ -71,6 +71,7 @@ modules:
   - multi-region-platform
   - regional-cluster-endpoints
   - machine-management
+  - tenant-storage
   - least-privilege-mode
   - disable-platform-db
   - platform-external-db
