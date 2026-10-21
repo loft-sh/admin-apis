@@ -242,7 +242,7 @@ features:
   displayName: "Tenant Storage"
   module: "operations"
   ui:
-    description: "Tenant Storage allows administrators to give each tenant isolated storage on an external storage system, such as WEKA, through a storage connector."
+    description: "Tenant Storage allows administrators to give each tenant isolated storage, provisioned and attached by the platform."
 - name: "least-privilege-mode"
   displayName: "Least Privilege Mode"
   module: "operations"
