@@ -12,12 +12,12 @@ lint *ARGS:
 
 # Generate all Go related APIs and files
 gen:
-  go run k8s.io/code-generator/cmd/deepcopy-gen@v0.28.1 \
+  go run k8s.io/code-generator/cmd/deepcopy-gen@v0.37.1 \
     --go-header-file ./hack/boilerplate.go.txt \
     --input-dirs ./pkg/licenseapi \
     -O zz_generated.deepcopy
   go generate ./...
-  go run k8s.io/kube-openapi/cmd/openapi-gen@v0.0.0-20260127142750-a19766b6e2d4 \
+  go run k8s.io/kube-openapi/cmd/openapi-gen@v0.0.0-20261014044854-ca3452a79603 \
     --go-header-file ./hack/boilerplate.go.txt \
     --output-pkg github.com/loft-sh/admin-apis/pkg/licenseapi \
     --output-dir ./pkg/licenseapi \
