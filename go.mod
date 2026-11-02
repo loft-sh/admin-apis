@@ -5,7 +5,7 @@ go 1.24.11
 require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/stripe/stripe-go/v81 v81.4.0
-	github.com/stripe/stripe-go/v87 v87.0.0
+	github.com/stripe/stripe-go/v87 v87.1.0
 	k8s.io/kube-openapi v0.0.0-20260127142750-a19766b6e2d4
 )
 
