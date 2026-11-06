@@ -302,6 +302,11 @@ features:
   ui:
     description: "Netris enables dynamic network automation for vCluster instances with private nodes"
     docsLink: "https://www.vcluster.com/docs/vcluster/configure/vcluster-yaml/integrations/netris"
+- name: "aviz"
+  displayName: "Aviz"
+  module: "bare-metal"
+  ui:
+    description: "Aviz enables dynamic network automation for vCluster instances with private nodes"
 - name: "kube-vip"
   displayName: "Kube-vip Integration"
   module: "bare-metal"
