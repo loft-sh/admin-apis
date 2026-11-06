@@ -25,6 +25,7 @@ modules:
 - displayName: Bare Metal
   features:
   - netris
+  - aviz
   - kube-vip
   - metal3
   name: bare-metal
