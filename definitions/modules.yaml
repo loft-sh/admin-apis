@@ -45,6 +45,8 @@ modules:
     displayName: "vNode"
   - name: "auto-nodes"
     displayName: "Auto Nodes"
+  - name: "slurm"
+    displayName: "Slurm"
 
 # DEPRECATED
   - name: "virtual-clusters"

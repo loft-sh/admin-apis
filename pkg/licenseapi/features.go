@@ -102,6 +102,8 @@ const (
 
 	Metal3 FeatureName = "metal3" // Metal3 Integration
 
+	Slurm FeatureName = "slurm" // Slurm
+
 	VmManagement FeatureName = "vm-management" // VM Management with KubeVirt
 
 	ArgoIntegration FeatureName = "argo-integration" // Argo Integration
@@ -215,6 +217,7 @@ func GetFeatures() []FeatureName {
 		Aviz,
 		KubeVip,
 		Metal3,
+		Slurm,
 		VmManagement,
 		ArgoIntegration,
 		VirtualClusterProDistroIntegrationsKubeVirt,
@@ -494,6 +497,11 @@ func GetAllFeatures() []*Feature {
 			DisplayName: "Metal3 Integration",
 			Name:        "metal3",
 			Module:      "bare-metal",
+		},
+		{
+			DisplayName: "Slurm",
+			Name:        "slurm",
+			Module:      "slurm",
 		},
 		{
 			DisplayName: "VM Management with KubeVirt",
