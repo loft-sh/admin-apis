@@ -112,6 +112,10 @@ modules:
   - vcp-distro-centralized-admission-control
   - vcp-distro-fips
   name: security
+- displayName: Slurm
+  features:
+  - slurm
+  name: slurm
 - displayName: Syncing
   features:
   - vcluster-host-path-mapper

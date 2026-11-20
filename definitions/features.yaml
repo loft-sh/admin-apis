@@ -320,6 +320,13 @@ features:
     description: "Metal3 Integration allows administrators to manage bare metal nodes with Metal3."
     docsLink: "https://www.vcluster.com/docs/platform/administer/node-providers/metal3"
 
+# Slurm
+- name: "slurm"
+  displayName: "Slurm"
+  module: "slurm"
+  ui:
+    description: "Slurm lets project users create managed Slurm clusters, with the controller, login nodes and node sets provisioned on a cluster the platform manages."
+
 # VM Management
 - name: "vm-management"
   displayName: "VM Management with KubeVirt"
