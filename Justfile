@@ -12,7 +12,7 @@ lint *ARGS:
 
 # Generate all Go related APIs and files
 gen:
-  go run k8s.io/code-generator/cmd/deepcopy-gen@v0.28.1 \
+  go run k8s.io/code-generator/cmd/deepcopy-gen@v0.37.2 \
     --go-header-file ./hack/boilerplate.go.txt \
     --input-dirs ./pkg/licenseapi \
     -O zz_generated.deepcopy
